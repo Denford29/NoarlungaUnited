@@ -1,0 +1,103 @@
+﻿@model noarlungaunited.com.au.Models.ContactModel
+@{
+    <div class="col-xs-12 col-sm-4 recentpost">
+        <h2>
+            <i class="fa fa-comments"></i> Get In Touch
+        </h2>
+
+        @if (TempData.ContainsKey("contactSuccess"))
+            {
+            var successMessage = (string)TempData["contactSuccess"];
+            <div role="alert" class="alert alert-success alert-dismissible fade in">
+                <button aria-label="Close" data-dismiss="alert" class="close" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p>@Html.Raw(successMessage)</p>
+            </div>
+            }
+        else
+            {
+            using (Html.BeginUmbracoForm("FooterContactSubmit", "ContactSurface", FormMethod.Post, new { role = "form", id = "contactForm", name = "contactForm", @class = "form-horizontal contactform" }))
+                {
+                if (TempData.ContainsKey("contactError"))
+                    {
+                    var errorMessage = (string)TempData["contactError"];
+                    <div role="alert" class="alert alert-danger alert-dismissible fade in">
+                        <button aria-label="Close" data-dismiss="alert" class="close" type="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <p>@Html.Raw(errorMessage)</p>
+                    </div>
+                    }
+
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(model => model.FullName, new { @class = "form-control required", required = "", placeholder = "Your Full Name" })
+                            @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "help-block text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control", required = "", placeholder = "Your Email Address" })
+                            @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "help-block text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", required = "", placeholder = "Your Phone Number" })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "help-block text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            @Html.TextAreaFor(model => model.Message, new { @class = "form-control", required = "", placeholder = "Your Message" })
+                            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "help-block text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-primary pull-right">Send Message</button>
+                        </div>
+                    </div>
+
+                }
+            }
+
+        @*<form class="form-horizontal contactform" method="post">
+                <div class="form-group">
+                    <label for="name" class="col-lg-2 control-label">Name <span class="required">*</span></label>
+                    <div class="col-lg-10">
+                        <input type="text" class="required" id="name" value="" name="name" placeholder="Name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="col-lg-2 control-label">Email <span class="required">*</span></label>
+                    <div class="col-lg-10">
+                        <input type="email" class="required email" id="email" value="" name="email" placeholder="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="col-lg-2 control-label">Message</label>
+                    <div class="col-lg-10">
+                        <textarea class="required" id="message" name="messagee" placeholder="Message"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <input class="btn btn-primary" type="submit" value="Submit" id="submit_id">
+                        <input class="btn" type="reset" value="Reset">
+                    </div>
+                </div>
+            </form>*@
+    </div>
+}

@@ -1,0 +1,38 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    var homePage = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "HomePage");
+    if (homePage != null && homePage.Id > 0 && homePage.Descendants("SponsorPage").Any())
+        {
+        var sponsors = homePage.Descendants("SponsorPage").OrderBy(x => x.CreateDate).Take(6);
+
+            <!-- Our Clinet-->
+        <section class="sponsors mt20 hidden-xs">
+            <div class="container">
+                <div class="row">
+                    <h2 class="heading1 col-sm-12">
+                        Our Sponsors
+                    </h2>
+                    @foreach (var sponsorPage in sponsors)
+                        {
+                        var sponsorImage = "/Images/Default-Sponsor-Logo.png";
+                        if (sponsorPage.HasProperty("sponsorLogo") && sponsorPage.HasValue("sponsorLogo"))
+                            {
+                            var mediaItem = Umbraco.TypedMedia(sponsorPage.GetPropertyValue("sponsorLogo").ToString());
+                            if (mediaItem != null && mediaItem.Id > 0)
+                                {
+                                sponsorImage = !string.IsNullOrEmpty(mediaItem.GetCropUrl("sponsorLogo")) ? mediaItem.GetCropUrl("sponsorLogo") : mediaItem.GetCropUrl(420, 120);
+                                }
+                            }
+                        <div class="col-sm-2">
+                            <a href="@sponsorPage.Url" title="@sponsorPage.Name">
+                                <img src="@sponsorImage" alt="@sponsorPage.Name" title="@sponsorPage.Name" />
+                            </a>
+                        </div>
+                        }
+
+                </div>
+            </div>
+        </section>
+
+        }
+}

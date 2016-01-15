@@ -1,0 +1,49 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@section headerCss{
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+}
+@{
+    Layout = "SiteMaster.cshtml";
+    <div class="container">
+
+        @Html.Partial("Master/BreadCrumbs")
+
+        @Html.Partial("Master/PageHeading")
+
+        <div class="row mt20">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 mt40column">
+                @if (Model.Content.HasProperty("headingImage") && Model.Content.HasValue("headingImage"))
+                    {
+                    var umbracoImage = Umbraco.TypedMedia(Model.Content.GetPropertyValue<Int32>("headingImage"));
+                    if (umbracoImage != null && umbracoImage.Id > 0)
+                        {
+                        var imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("pageHeading")) ? umbracoImage.GetCropUrl("pageHeading") : umbracoImage.GetCropUrl(900, 400);
+                        <div class="mb20">
+                            <img alt="@Model.Content.Name" src="@imageSrc">
+                        </div>
+                        }
+                    }
+
+                @if (Model.Content.HasProperty("bodyText") && Model.Content.HasValue("bodyText"))
+                    {
+                    <div class="headingsubtitle">
+                        @Html.Raw(Model.Content.GetPropertyValue("bodyText"))
+                    </div>
+                    }
+
+                <div class="mb20">
+                    @Html.Action("GetEventDetails", "ECSurface", new { area = "EventCalendar", id = Request["id"], calendar = Request["calendar"], type = Request["type"] })
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt40column">
+                @Html.Partial("Master/SideNavigation")
+            </div>
+
+        </div>
+    </div>
+}
+
+@section footerScripts{
+}

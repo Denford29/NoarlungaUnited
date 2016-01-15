@@ -1,0 +1,204 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var siteHeading = "Noarlunga United Soccer Club";
+    var siteAddress = "Wilfred Taylor Reserve, Sports Park Dr, Morphett Vale SA 5162";
+    var sitePhoneNumber = "(08) 8326 2855";
+    var siteEmailAddress = "support@noarlungaunited.com.au";
+    var rightHeaderLogo = "/Images/Noarlunga-United-Shield.png";
+    var leftHeaderLogo = "/Images/Noarlunga-United-Bulldogs.png";
+    var siteSetting = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "GlobalSettings");
+    var homePage = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "HomePage");
+
+    if (siteSetting != null && siteSetting.Id > 0 && siteSetting.Descendants("SiteDetails").Any())
+        {
+        var siteDetailsPage = siteSetting.Descendants("SiteDetails").FirstOrDefault();
+        if (siteDetailsPage != null && siteDetailsPage.Id > 0)
+            {
+
+            if (siteDetailsPage.HasProperty("siteName") && siteDetailsPage.HasValue("siteName"))
+                {
+                siteHeading = siteDetailsPage.GetPropertyValue("siteName").ToString();
+                }
+
+            if (siteDetailsPage.HasProperty("siteAddress") && siteDetailsPage.HasValue("siteAddress"))
+                {
+                siteAddress = siteDetailsPage.GetPropertyValue("siteAddress").ToString();
+                }
+
+            if (siteDetailsPage.HasProperty("sitePhoneNumber") && siteDetailsPage.HasValue("sitePhoneNumber"))
+                {
+                sitePhoneNumber = siteDetailsPage.GetPropertyValue("sitePhoneNumber").ToString();
+                }
+
+            if (siteDetailsPage.HasProperty("siteEmailAddress") && siteDetailsPage.HasValue("siteEmailAddress"))
+                {
+                siteEmailAddress = siteDetailsPage.GetPropertyValue("siteEmailAddress").ToString();
+                }
+
+            if (siteDetailsPage.HasProperty("rightHeaderLogo") && siteDetailsPage.HasValue("rightHeaderLogo"))
+                {
+                var mediaItem = Umbraco.TypedMedia(siteDetailsPage.GetPropertyValue("rightHeaderLogo").ToString());
+                if (mediaItem != null && mediaItem.Id > 0)
+                    {
+                    rightHeaderLogo = !string.IsNullOrEmpty(mediaItem.GetCropUrl("Logo")) ? mediaItem.GetCropUrl("Logo") : mediaItem.GetCropUrl(200, 200);
+                    }
+                }
+
+            if (siteDetailsPage.HasProperty("leftHeaderLogo") && siteDetailsPage.HasValue("leftHeaderLogo"))
+                {
+                var mediaItem = Umbraco.TypedMedia(siteDetailsPage.GetPropertyValue("leftHeaderLogo").ToString());
+                if (mediaItem != null && mediaItem.Id > 0)
+                    {
+                    leftHeaderLogo = !string.IsNullOrEmpty(mediaItem.GetCropUrl("Logo")) ? mediaItem.GetCropUrl("Logo") : mediaItem.GetCropUrl(200, 200);
+                    }
+                }
+
+            }
+        }
+
+        <header>
+            <!--Header Logos - Start -->
+            <div class="container mt10 mb10">
+                <div class="row headerLogos hidden-xs">
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <img src="@rightHeaderLogo" class="logoImage" />
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 LogoHeading">
+                        <h1 class="headingcenter">
+                            @siteHeading
+                        </h1>
+                        <h3 class="headingcenter">
+                            @siteAddress
+                        </h3>
+                        <h3 class="headingcenter">
+                            @sitePhoneNumber
+                        </h3>
+                        <h3 class="headingcenter">
+                            @siteEmailAddress
+                        </h3>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <img src="@leftHeaderLogo" class="logoImage" />
+                    </div>
+                </div>
+
+                <!-- Mobile logos -->
+                <div class="row mobileHeaderLogos hidden-sm hidden-md hidden-lg">
+                    <div class="logoContainer col-xs-6">
+                        <img src="@rightHeaderLogo" class="logoImage" />
+                    </div>
+                    <div class="logoContainer col-xs-6">
+                        <img src="@leftHeaderLogo" class="logoImage" />
+                    </div>
+                </div>
+            </div>
+            <!--Header Logos - End -->
+
+            <!-- Menu Navbar -- Start -->
+            @if (homePage != null && homePage.Id > 0)
+                {
+                var homeTitle = homePage.Name;
+                if (homePage.HasProperty("linkTittle") && homePage.HasValue("linkTittle"))
+                    {
+                    homeTitle = homePage.GetPropertyValue("linkTittle").ToString();
+                    }
+
+                <div class="mainmenu mb10">
+                    <nav class="subnav navbar navbar-default">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="@homePage.Url">@siteHeading</a>
+                            <div class="mobileHeaderDetails">
+                                <h5 class="headingcenter hidden-sm hidden-md hidden-lg">
+                                    @siteAddress
+                                </h5>
+                                <h5 class="headingcenter hidden-sm hidden-md hidden-lg">
+                                    @sitePhoneNumber
+                                </h5>
+                                <h5 class="headingcenter hidden-sm hidden-md hidden-lg">
+                                    @siteEmailAddress
+                                </h5>
+                            </div>
+                            
+                        </div>
+
+                        <div id="navbar" class="container menurelative navbar-collapse collapse">
+                            <ul class="mainmenucontain container nav navbar-nav">
+                                <li>
+                                    <a @(homePage.Id == Model.Content.Id ? "class=active" : null) href="@homePage.Url" title="@homeTitle">
+                                        @if (homePage.HasProperty("pageIcon") && homePage.HasValue("pageIcon"))
+                                            {
+                                            var homeIcon = homePage.GetPropertyValue("pageIcon").ToString();
+                                        <i class="fa fa-@homeIcon fa-fw"></i>
+                                            }
+                                        @homeTitle
+                                    </a>
+                                </li>
+
+                                @if (homePage.Children.Any())
+                                    {
+                                    foreach (var landingPage in homePage.Children.Where(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu")))
+                                        {
+                                        var pageTitle = landingPage.Name;
+                                        if (landingPage.HasProperty("linkTittle") && landingPage.HasValue("linkTittle"))
+                                            {
+                                            pageTitle = landingPage.GetPropertyValue("linkTittle").ToString();
+                                            }
+
+                                <li>
+                                    <a href="@landingPage.Url" title="@pageTitle" @(landingPage.Id == Model.Content.Id ? "class=active" : Model.Content.AncestorOrSelf(2).Id == landingPage.Id ? "class=active" : null)>
+                                        @if (landingPage.HasProperty("pageIcon") && landingPage.HasValue("pageIcon"))
+                                                    {
+                                                    var pageIcon = landingPage.GetPropertyValue("pageIcon").ToString();
+                                                <i class="fa fa-@pageIcon fa-fw"></i>
+                                                    }
+                                        @pageTitle
+                                    </a>
+                                    @if (landingPage.Children.Any() && landingPage.ContentType.Alias != "EventsLandingPage")
+                                        {
+                                        <div class="hidden-xs">
+                                            <h4 class="menutitle">
+                                                @pageTitle
+                                            </h4>
+                                            <div class="mega">
+                                                <ul>
+                                                    @foreach (var childPage in landingPage.Children.Where(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu")))
+                                                        {
+                                                        var childPageTitle = childPage.Name;
+                                                        if (childPage.HasProperty("linkTittle") && childPage.HasValue("linkTittle"))
+                                                            {
+                                                            childPageTitle = childPage.GetPropertyValue("linkTittle").ToString();
+                                                            }
+                                                        <li>
+                                                            <a href="@childPage.Url" title="@childPageTitle">
+                                                                @if (childPage.HasProperty("pageIcon") && childPage.HasValue("pageIcon"))
+                                                                    {
+                                                                    var pageIcon = childPage.GetPropertyValue("pageIcon").ToString();
+                                                                    <i class="fa fa-@pageIcon fa-fw"></i>
+                                                                    }
+                                                                @childPageTitle
+                                                            </a>
+                                                        </li>
+                                                        }
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        }
+                                </li>
+                                        }
+                                    }
+                            </ul>
+                        </div>
+                    </nav>
+                    </div>
+
+                }
+            <!-- Menu Navbar - End -->
+</header>
+}

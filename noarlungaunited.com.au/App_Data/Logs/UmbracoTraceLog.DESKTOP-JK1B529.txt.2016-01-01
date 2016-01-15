@@ -1,0 +1,27 @@
+﻿ 2016-01-01 14:56:46,352 [P9548/D2/T124] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: Login attempt succeeded for username Denford from IP address 127.0.0.1
+ 2016-01-01 14:56:46,352 [P9548/D2/T124] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: User: Denford logged in from IP address 127.0.0.1
+ 2016-01-01 14:56:46,455 [P9548/D2/T115] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.Trees.TreeController
+ 2016-01-01 14:56:46,455 [P9548/D2/T115] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.Trees.TreeController, found 0 (took 0ms)
+ 2016-01-01 14:58:36,313 [P9548/D2/T124] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Website Details' with Id '1094' has been published.
+ 2016-01-01 14:58:40,473 [P9548/D2/T121] INFO  umbraco.content - Save Xml to file...
+ 2016-01-01 14:58:40,489 [P9548/D2/T141] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-01 15:25:22,175 [P9548/D2/T133] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Teams' with Id '1083' has been published.
+ 2016-01-01 15:25:26,287 [P9548/D2/T11] INFO  umbraco.content - Save Xml to file...
+ 2016-01-01 15:25:26,295 [P9548/D2/T47] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-01 15:26:11,139 [P9548/D2/T137] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Events' with Id '1086' has been published.
+ 2016-01-01 15:26:15,258 [P9548/D2/T131] INFO  umbraco.content - Save Xml to file...
+ 2016-01-01 15:26:15,262 [P9548/D2/T44] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-01 15:26:49,530 [P9548/D2/T154] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: Login attempt succeeded for username Denford from IP address 127.0.0.1
+ 2016-01-01 15:26:49,530 [P9548/D2/T154] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: User: Denford logged in from IP address 127.0.0.1
+ 2016-01-01 15:26:49,794 [P9548/D2/T136] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'News' with Id '1088' has been published.
+ 2016-01-01 15:26:53,921 [P9548/D2/T151] INFO  umbraco.content - Save Xml to file...
+ 2016-01-01 15:26:53,927 [P9548/D2/T44] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-01 15:27:28,405 [P9548/D2/T131] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Contact' with Id '1089' has been published.
+ 2016-01-01 15:27:32,427 [P9548/D2/T116] INFO  umbraco.content - Save Xml to file...
+ 2016-01-01 15:27:32,444 [P9548/D2/T116] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-01 15:27:43,746 [P9548/D2/T155] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Contact' with Id '1089' has been published.
+ 2016-01-01 15:27:47,822 [P9548/D2/T157] INFO  umbraco.content - Save Xml to file...
+ 2016-01-01 15:27:47,834 [P9548/D2/T34] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-01 15:28:41,338 [P9548/D2/T131] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Sponsors' with Id '1090' has been published.
+ 2016-01-01 15:28:45,437 [P9548/D2/T138] INFO  umbraco.content - Save Xml to file...
+ 2016-01-01 15:28:45,448 [P9548/D2/T46] INFO  umbraco.content - Saved Xml to file.

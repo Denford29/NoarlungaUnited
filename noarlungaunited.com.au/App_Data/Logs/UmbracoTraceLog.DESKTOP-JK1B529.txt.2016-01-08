@@ -1,0 +1,47 @@
+﻿ 2016-01-08 12:31:15,336 [P5720/D7/T137] INFO  umbraco.BusinessLogic.Log - Log scrubbed.  Removed all items older than 2016-01-07 12:31:15
+ 2016-01-08 19:54:48,196 [P5720/D7/T138] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: Login attempt succeeded for username Denford from IP address 127.0.0.1
+ 2016-01-08 19:54:48,201 [P5720/D7/T138] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: User: Denford logged in from IP address 127.0.0.1
+ 2016-01-08 19:54:48,407 [P5720/D7/T143] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.Trees.TreeController
+ 2016-01-08 19:54:48,447 [P5720/D7/T143] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.Trees.TreeController, found 0 (took 45ms)
+ 2016-01-08 19:54:48,626 [P5720/D7/T110] INFO  Umbraco.Core.PluginManager - Starting resolution types of umbraco.interfaces.ITree
+ 2016-01-08 19:54:48,648 [P5720/D7/T110] INFO  Umbraco.Core.PluginManager - Completed resolution of types of umbraco.interfaces.ITree, found 0 (took 33ms)
+ 2016-01-08 19:54:48,695 [P5720/D7/T102] INFO  Umbraco.Core.PluginManager - Starting resolution types of umbraco.interfaces.IApplication
+ 2016-01-08 19:54:48,726 [P5720/D7/T102] INFO  Umbraco.Core.PluginManager - Completed resolution of types of umbraco.interfaces.IApplication, found 0 (took 29ms)
+ 2016-01-08 19:54:48,744 [P5720/D7/T110] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.Trees.TreeController
+ 2016-01-08 19:54:48,745 [P5720/D7/T110] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.Trees.TreeController, found 0 (took 0ms)
+ 2016-01-08 19:54:48,748 [P5720/D7/T110] INFO  Umbraco.Core.PluginManager - Starting resolution types of umbraco.interfaces.ITree
+ 2016-01-08 19:54:48,779 [P5720/D7/T110] INFO  Umbraco.Core.PluginManager - Completed resolution of types of umbraco.interfaces.ITree, found 0 (took 38ms)
+ 2016-01-08 20:15:44,206 [P5720/D7/T140] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Website Details' with Id '1094' has been published.
+ 2016-01-08 20:15:44,390 [P5720/D7/T140] INFO  Umbraco.Core.PluginManager - Starting resolution types of umbraco.interfaces.ICacheRefresher
+ 2016-01-08 20:15:44,421 [P5720/D7/T140] INFO  Umbraco.Core.PluginManager - Completed resolution of types of umbraco.interfaces.ICacheRefresher, found 0 (took 31ms)
+ 2016-01-08 20:15:48,551 [P5720/D7/T138] INFO  umbraco.content - Save Xml to file...
+ 2016-01-08 20:15:48,551 [P5720/D7/T138] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-08 20:16:08,796 [P5720/D7/T141] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Website Details' with Id '1094' has been published.
+ 2016-01-08 20:16:12,824 [P5720/D7/T145] INFO  umbraco.content - Save Xml to file...
+ 2016-01-08 20:16:12,830 [P5720/D7/T109] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-08 20:16:35,913 [P5720/D7/T139] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Under 8's' with Id '0' has been published.
+ 2016-01-08 20:16:40,038 [P5720/D7/T109] INFO  umbraco.content - Save Xml to file...
+ 2016-01-08 20:16:40,038 [P5720/D7/T187] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-08 20:17:08,941 [P5720/D7/T136] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Under 8's' with Id '1111' has been unpublished.
+ 2016-01-08 20:17:13,078 [P5720/D7/T136] INFO  umbraco.content - Save Xml to file...
+ 2016-01-08 20:17:13,081 [P5720/D7/T194] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-08 20:17:30,210 [P5720/D7/T139] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.Trees.TreeController
+ 2016-01-08 20:17:30,212 [P5720/D7/T139] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.Trees.TreeController, found 0 (took 2ms)
+ 2016-01-08 20:17:32,479 [P5720/D7/T110] WARN  Umbraco.Web.UmbracoModule - Status code is 404 yet TrySkipIisCustomErrors is false - IIS will take over.
+ 2016-01-08 20:25:34,766 [P5720/D7/T140] WARN  Umbraco.Web.UmbracoModule - Status code is 404 yet TrySkipIisCustomErrors is false - IIS will take over.
+ 2016-01-08 20:25:44,508 [P5720/D7/T137] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: Login attempt succeeded for username Denford from IP address 127.0.0.1
+ 2016-01-08 20:25:44,508 [P5720/D7/T137] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: User: Denford logged in from IP address 127.0.0.1
+ 2016-01-08 20:29:02,897 [P5720/D7/T139] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Contact' with Id '1089' has been published.
+ 2016-01-08 20:29:06,981 [P5720/D7/T140] INFO  umbraco.content - Save Xml to file...
+ 2016-01-08 20:29:06,981 [P5720/D7/T182] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-08 20:29:26,296 [P5720/D7/T139] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Contact' with Id '1089' has been published.
+ 2016-01-08 20:29:30,363 [P5720/D7/T138] INFO  umbraco.content - Save Xml to file...
+ 2016-01-08 20:29:30,379 [P5720/D7/T138] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-08 20:45:36,633 [P5720/D7/T145] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Home' with Id '1053' has been published.
+ 2016-01-08 20:45:40,678 [P5720/D7/T137] INFO  umbraco.content - Save Xml to file...
+ 2016-01-08 20:45:40,694 [P5720/D7/T203] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-08 20:46:03,599 [P5720/D7/T140] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Home' with Id '1053' has been published.
+ 2016-01-08 20:46:07,632 [P5720/D7/T133] INFO  umbraco.content - Save Xml to file...
+ 2016-01-08 20:46:07,632 [P5720/D7/T141] INFO  umbraco.content - Saved Xml to file.
+ 2016-01-08 20:47:54,956 [P5720/D7/T133] INFO  umbraco.BusinessLogic.Log - Log scrubbed.  Removed all items older than 2016-01-07 20:47:54
+ 2016-01-08 21:30:46,852 [P5720/D7/T110] WARN  Umbraco.Web.UmbracoModule - Status code is 404 yet TrySkipIisCustomErrors is false - IIS will take over.

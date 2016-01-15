@@ -1,0 +1,113 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    var siteName = "Noarlunga United Soccer Club";
+    var siteAddress = "Wilfred Taylor Reserve, Sports Park Dr, Morphett Vale SA 5162";
+    var sitePhoneNumber = "(08) 8326 2855";
+    var siteEmailAddress = "support@noarlungaunited.com.au";
+    var siteSetting = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "GlobalSettings");
+    if (siteSetting != null && siteSetting.Id > 0 && siteSetting.Descendants("SiteDetails").Any())
+        {
+        var siteDetailsPage = siteSetting.Descendants("SiteDetails").FirstOrDefault();
+        if (siteDetailsPage != null && siteDetailsPage.Id > 0)
+            {
+            
+            if (siteDetailsPage.HasProperty("siteName") && siteDetailsPage.HasValue("siteName"))
+                {
+                siteName = siteDetailsPage.GetPropertyValue("siteName").ToString();
+                }
+            
+            if (siteDetailsPage.HasProperty("siteAddress") && siteDetailsPage.HasValue("siteAddress"))
+                {
+                siteAddress = siteDetailsPage.GetPropertyValue("siteAddress").ToString();
+                }
+
+            if (siteDetailsPage.HasProperty("sitePhoneNumber") && siteDetailsPage.HasValue("sitePhoneNumber"))
+                {
+                sitePhoneNumber = siteDetailsPage.GetPropertyValue("sitePhoneNumber").ToString();
+                }
+
+            if (siteDetailsPage.HasProperty("siteEmailAddress") && siteDetailsPage.HasValue("siteEmailAddress"))
+                {
+                siteEmailAddress = siteDetailsPage.GetPropertyValue("siteEmailAddress").ToString();
+                }
+            }
+        }
+        <!-- Footer -Start -->
+        <footer id="footer">
+            <section class="footersocial">
+                <div class="container">
+                    <div class="row">
+
+                        @Html.Action("GetFooterContactForm", "ContactSurface")
+
+                        <div class="col-xs-12 col-sm-4 contact">
+                            <h2> <i class="fa fa-phone"></i> Contact </h2>
+                            <ul>
+                                <li class="location">
+                                    @siteAddress
+                                </li>
+                                <li class="phone">
+                                    @sitePhoneNumber
+                                </li>
+                                <li class="email">
+                                    @siteEmailAddress
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-4 facebook hidden-xs">
+
+                            <!--Facebook script - Start -->
+                            <div id="fb-root"></div>
+                            <script>
+                                (function (d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                    if (d.getElementById(id)) return;
+                                    js = d.createElement(s); js.id = id;
+                                    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.5&appId=1675593639385754";
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                }(document, 'script', 'facebook-jssdk'));
+                            </script>
+                            <!--Facebook script - End -->
+
+                            <h2>
+                                <i class="fa fa-facebook-square"></i> Facebook
+                            </h2>
+
+                            <div class="fb-page"
+                                 data-href="www.facebook.com/noarlungaunited"
+                                 data-tabs="timeline"
+                                 data-width="350"
+                                 data-height="300"
+                                 data-small-header="false"
+                                 data-adapt-container-width="true"
+                                 data-hide-cover="false" data-show-facepile="false"></div>
+                        </div>
+
+                        <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+                            <div class="fb-like"
+                                 data-share="true"
+                                 data-width="450"
+                                 data-show-faces="true">
+                            </div>
+                            <div class="fb-share-button" 
+                                 data-href="www.facebook.com/noarlungaunited" 
+                                 data-layout="button_count">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="copyrightbottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="pull-left"> Copyright © @DateTime.Now.Year. @siteName. All rights reserved </div>
+                        <div class="pull-right"> Crafted by <a href="http://rdmonline.co.uk/" title="RDM Online">RDM Online</a></div>
+                    </div>
+                </div>
+            </section>
+        </footer>
+    <!-- Footer -End -->
+}

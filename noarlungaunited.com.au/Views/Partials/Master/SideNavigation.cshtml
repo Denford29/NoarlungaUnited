@@ -1,0 +1,226 @@
+﻿@using System.Globalization
+@using EventCalendarBelle
+@using EventCalendarBelle.Controller
+@inherits UmbracoTemplatePage
+@{
+
+    var homePage = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "HomePage");
+    var level2ParentPage = homePage;
+    if (Model.Content.Level != 1)
+        {
+        level2ParentPage = Model.Content.Level == 2 ? Model.Content : Model.Content.Parent;
+        }
+    if (level2ParentPage != null && level2ParentPage.Id > 0)
+        {
+        var level2ParentPageTitle = level2ParentPage.Name;
+        if (level2ParentPage.HasProperty("linkTittle") && level2ParentPage.HasValue("linkTittle"))
+            {
+            level2ParentPageTitle = level2ParentPage.GetPropertyValue("linkTittle").ToString();
+            }
+        if (level2ParentPage.Children.Any(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu")))
+            {
+            var level3Pages = level2ParentPage.Children.Where(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu"));
+
+            if (Model.Content.ContentType.Alias == "EventsLandingPage")
+                {
+                @*<div>
+                    <h2 class="heading1">
+                        <span class="maintext">
+                            Filter By Calendar
+                        </span>
+                    </h2>
+                    <ul id="catList" class="nav nav-list categories"></ul>
+                </div>*@
+                }
+            else
+                {
+                <div>
+                    <h2 class="heading1">
+                        <span class="maintext">
+                            In
+                            <a href="@level2ParentPage.Url" title="@level2ParentPageTitle">
+                                @level2ParentPageTitle
+                            </a>
+                            section...
+                        </span>
+                    </h2>
+                    <ul class="nav nav-list categories">
+                        @foreach (var level3Page in level3Pages)
+                            {
+                            var level3PageTitle = level3Page.Name;
+                            if (level3Page.HasProperty("linkTittle") && level3Page.HasValue("linkTittle"))
+                                {
+                                level3PageTitle = level3Page.GetPropertyValue("linkTittle").ToString();
+                                }
+                            <li>
+                                <a href="@level3Page.Url" title="@level3PageTitle">
+                                    @level3PageTitle
+                                </a>
+                            </li>
+                            }
+                    </ul>
+                </div>
+                }
+
+            }
+        }
+
+    if (homePage != null && homePage.Id > 0 && homePage.Descendants("NewsArticlePage").Any())
+        {
+        var newsLandingPage = homePage.Descendants("NewsLandingPage").FirstOrDefault();
+        var newsArticle = homePage.Descendants("NewsArticlePage")
+            .Where(article => article.HasValue("articleDate")
+                              && article.GetPropertyValue<DateTime>
+                                  ("articleDate") != DateTime.MinValue)
+            .Take(2)
+            .ToList()
+            .OrderByDescending(article => article.GetPropertyValue<DateTime>("articleDate"))
+            .FirstOrDefault();
+        if (newsArticle != null && newsArticle.Id > 0)
+            {
+            var articleTitle = newsArticle.Name;
+            if (newsArticle.HasProperty("linkTittle") && newsArticle.HasValue("linkTittle"))
+                {
+                articleTitle = newsArticle.GetPropertyValue("linkTittle").ToString();
+                }
+            var articleDate = newsArticle.CreateDate;
+            if (newsArticle.HasProperty("articleDate") && newsArticle.HasValue("articleDate"))
+                {
+                articleDate = newsArticle.GetPropertyValue<DateTime>("articleDate");
+                }
+            <div class="blogdetail">
+                <h2 class="heading1">
+                    <span class="maintext">Latest News</span>
+                    @if (newsLandingPage != null && newsLandingPage.Id > 0)
+                        {
+                        <a class="btn btn-primary btn-small pull-right" href="@newsLandingPage.Url" title="@newsLandingPage.Name">
+                            All News
+                        </a>
+                        }
+                </h2>
+                <div id="latestnews" class="caption">
+                    <ul>
+                        <li>
+                            <div class="newstitle">
+                                @if (newsArticle.HasProperty("headingImage") && newsArticle.HasValue("headingImage"))
+                                    {
+                                    var umbracoImage = Umbraco.TypedMedia(newsArticle.GetPropertyValue<Int32>("headingImage"));
+                                    if (umbracoImage != null && umbracoImage.Id > 0)
+                                        {
+                                        var imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("listingThumb")) ? umbracoImage.GetCropUrl("listingThumb") : umbracoImage.GetCropUrl(50, 50);
+                                        <img class="imageleft" src="@imageSrc" alt="@articleTitle" title="@articleTitle">
+                                        }
+                                    }
+                                <h4>
+                                    <a href="@newsArticle.Url" title="@articleTitle">
+                                        @articleTitle
+                                    </a>
+                                </h4>
+                                <i class="fa fa-calendar"></i>
+                                <span class="date">@articleDate.ToLongDateString()</span>
+                            </div>
+                            @if (newsArticle.HasProperty("bodyText") && newsArticle.HasValue("bodyText"))
+                                {
+                                var nonHtmlContent = Umbraco.StripHtml(newsArticle.GetPropertyValue("bodyText").ToString());
+                                var trimmedBodyText = Umbraco.Truncate(nonHtmlContent, 100);
+                                <p>
+                                    @Html.Raw(trimmedBodyText)
+                                </p>
+                                }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            }
+        }
+
+    if (homePage != null && homePage.Id > 0 && homePage.Descendants("EventsLandingPage").Any())
+        {
+        var calendarId = 0;
+        var eventsLandingPage = homePage.Descendants("EventsLandingPage").FirstOrDefault();
+        if (eventsLandingPage != null && eventsLandingPage.Id > 0 && eventsLandingPage.HasProperty("sideCalendarEvents") && eventsLandingPage.HasValue("sideCalendarEvents"))
+            {
+            var eventsCalendarId = eventsLandingPage.GetPropertyValue<string>("sideCalendarEvents");
+            int number;
+            if (Int32.TryParse(eventsCalendarId, out number))
+                {
+                calendarId = number;
+                }
+
+            var calendar = EventCalendarHelper.GetCalendar(calendarId);
+            if (calendar != null)
+                {
+                var calDetails = new EventApiController();
+                var hasEvents = calDetails.GetAll().Any();
+                <div class="blogdetail">
+                    <h2 class="heading1">
+                        <span class="maintext">
+                            Latest Event
+                        </span>
+                        <a class="btn btn-primary btn-small pull-right" href="@eventsLandingPage.Url" title="@eventsLandingPage.Name">
+                            All Events
+                        </a>
+                    </h2>
+                    @if (hasEvents)
+                        {
+                        var listingEvent = calDetails.GetAll().
+                            Where(item => item.Start.HasValue && item.End.HasValue).
+                            Where(item => item.End >= DateTime.Today).
+                            OrderBy(item => item.Start).Take(2).ToList().FirstOrDefault();
+
+                        if (listingEvent != null && listingEvent.Id > 0)
+                            {
+                            var eventListUrl = "";
+                            if (eventsLandingPage.Descendants("EventDetailsPage").Any())
+                                {
+                                var eventDetailsPage = eventsLandingPage.Descendants("EventDetailsPage").FirstOrDefault();
+                                var typeInt = listingEvent.AllDay ? 0 : 1;
+                                if (eventDetailsPage != null && eventDetailsPage.Id > 0)
+                                    {
+                                    eventListUrl = eventDetailsPage.Url + "?id=" + listingEvent.Id + "&type=" + typeInt + "&calendar=" + listingEvent.calendarId;
+                                    }
+                                }
+                            <div id="latestnews" class="caption">
+                                <ul>
+                                    <li>
+                                        <div class="newstitle">
+                                            <h4>
+                                                @if (!string.IsNullOrEmpty(eventListUrl))
+                                                    {
+                                                    <a href="@eventListUrl" title="@listingEvent.Title">
+                                                        @listingEvent.Title
+                                                    </a>
+                                                    }
+                                                else
+                                                    {
+                                                    @listingEvent.Title
+                                                    }
+                                            </h4>
+                                            @if (listingEvent.Start.HasValue)
+                                                {
+                                                <i class="fa fa-calendar"></i>
+                                                <span class="date"> @listingEvent.Start.Value.ToLongDateString()</span>
+                                                }
+                                                @if (listingEvent.Descriptions != null)
+                                                    {
+                                                    var eventDescrition = listingEvent.Descriptions.Where(description => description.CultureCode == CultureInfo.CurrentCulture.ToString()).FirstOrDefault();
+                                                    if (eventDescrition != null)
+                                                        {
+                                                        var descriptionText = eventDescrition.Content;
+                                                        var trimmedBodyText = Umbraco.Truncate(descriptionText, 100);
+                                                        <p>
+                                                            @Html.Raw(trimmedBodyText)
+                                                        </p>
+                                                        }
+                                                    }
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            }
+                        }
+                </div>
+                }
+            }
+        }
+}

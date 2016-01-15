@@ -1,0 +1,39 @@
+﻿@inherits UmbracoTemplatePage
+
+@section pageSlider{
+
+@Html.Partial("Home/Slider")
+    
+}
+
+@{
+    
+    Layout = "SiteMaster.cshtml";
+    var siteHeading = "Noarlunga United Soccer Club";
+    if (Model.Content.HasProperty("pageHeading") && Model.Content.HasValue("pageHeading"))
+    {
+        siteHeading = Model.Content.GetPropertyValue<string>("pageHeading");
+    }
+
+    <div class="row mt20">
+        <div class="seodetails col-lg-12">
+            <h1 class="headingcenter">
+                @siteHeading
+            </h1>
+
+            @if (Model.Content.HasProperty("bodyText") && Model.Content.HasValue("bodyText"))
+            {
+                @Html.Raw(Model.Content.GetPropertyValue("bodyText"))
+            }
+        </div>
+    </div>
+
+    <div class="row mt20">
+
+        @Html.Partial("Home/EventsList") 
+
+        @Html.Partial("Home/NewsList")
+        
+    </div>
+}
+

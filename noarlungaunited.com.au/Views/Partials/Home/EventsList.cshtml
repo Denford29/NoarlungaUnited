@@ -1,0 +1,100 @@
+﻿@using EventCalendarBelle
+@using EventCalendarBelle.Controller
+@inherits UmbracoTemplatePage
+@{
+    var homePage = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "HomePage");
+    var calendarId = 0;
+    if (homePage != null && homePage.Id > 0 && homePage.Descendants("EventsLandingPage").Any())
+        {
+        var eventsLandingPage = homePage.Descendants("EventsLandingPage").FirstOrDefault();
+        if (eventsLandingPage != null && eventsLandingPage.Id > 0 && eventsLandingPage.HasProperty("sideCalendarEvents") && eventsLandingPage.HasValue("sideCalendarEvents"))
+            {
+            var eventsCalendarId = eventsLandingPage.GetPropertyValue<string>("sideCalendarEvents");
+            int number;
+            if (Int32.TryParse(eventsCalendarId, out number))
+                {
+                calendarId = number;
+                }
+
+            var calendar = EventCalendarHelper.GetCalendar(calendarId);
+
+            if (calendar != null)
+                {
+                var calDetails = new EventApiController();
+                var hasEvents = calDetails.GetAll().Any();
+
+                <div class="col-lg-6 col-xs-12 col-sm-6">
+                    <h2 class="heading1">
+                        <span class="maintext">
+                            Upcoming Events
+                        </span>
+                        <a class="btn btn-primary btn-small pull-right" href="@eventsLandingPage.Url" title="@eventsLandingPage.Name">
+                            View All
+                        </a>
+                    </h2>
+
+                    @if (hasEvents)
+                        {
+                        var listingEvents = calDetails.GetAll()
+                            .Where(item => item.Start.HasValue && item.End.HasValue)
+                            .Where(item => item.End >= DateTime.Today)
+                            .OrderBy(item => item.Start).Take(4).ToList();
+                        if (listingEvents.Any())
+                            {
+                            <div id="latestnews">
+                                <ul>
+                                    @foreach (var eventItem in listingEvents)
+                                        {
+                                        var eventListUrl = "";
+                                        if (eventsLandingPage.Descendants("EventDetailsPage").Any())
+                                            {
+                                            var eventDetailsPage = eventsLandingPage.Descendants("EventDetailsPage").FirstOrDefault();
+                                            var typeInt = eventItem.AllDay ? 0 : 1;
+                                            if (eventDetailsPage != null && eventDetailsPage.Id > 0)
+                                                {
+                                                eventListUrl = eventDetailsPage.Url + "?id=" + eventItem.Id + "&type=" + typeInt + "&calendar=" + eventItem.calendarId;
+                                                }
+                                            }
+                                            <li>
+                                                <h4>
+                                                    @if (!string.IsNullOrEmpty(eventListUrl))
+                                                        {
+                                                        <a href="@eventListUrl" title="@eventItem.Title">
+                                                            @eventItem.Title
+                                                        </a>
+                                                        }
+                                                    else
+                                                        {
+                                                        @eventItem.Title
+                                                        }
+                                                </h4>
+                                                <p>
+                                                    @if (eventItem.Start.HasValue)
+                                                        {
+                                                        <i class="fa fa-calendar-check-o"></i>
+                                                        <span class="date">
+                                                            @eventItem.Start.Value.ToLongDateString() Time:@eventItem.Start.Value.ToShortTimeString()
+                                                        </span>
+                                                        }
+
+                                                    @if (!string.IsNullOrEmpty(eventListUrl))
+                                                        {
+                                                        <a href="@eventListUrl" title="@eventItem.Title" class="btn btn-primary btn-small pull-right">
+                                                            View Details
+                                                        </a>
+                                                        }
+                                                </p>
+
+                                            </li>
+                                        }
+                                </ul>
+                            </div>
+                            }
+                        }
+                </div>
+
+                }
+            }
+        }
+
+}

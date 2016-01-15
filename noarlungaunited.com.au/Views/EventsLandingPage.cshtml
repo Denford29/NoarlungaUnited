@@ -1,0 +1,137 @@
+﻿@using System.Globalization
+@using EventCalendarBelle
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@section headerCss{
+    <link href="/Css/EventCalendar/fullcalendar.css" rel="stylesheet">
+    <link href="/Css/jquery.qtip.min.css" rel="stylesheet">
+}
+@{
+    Layout = "SiteMaster.cshtml";
+    int id = 0;
+    if (Model.Content.HasProperty("eventsCalendar") && Model.Content.HasValue("eventsCalendar"))
+        {
+        id = int.Parse(Model.Content.GetPropertyValue<string>("eventsCalendar"));
+        }
+
+    var calendar = EventCalendarHelper.GetCalendar(id);
+
+    var eventDetailsPage = Model.Content.Descendants("EventDetailsPage").FirstOrDefault();
+    var eventDetailsPageUrl = Model.Content.Down().Url;
+
+    if (eventDetailsPage != null && eventDetailsPage.Id > 0)
+        {
+        eventDetailsPageUrl = eventDetailsPage.Url;
+        }
+
+        <div class="container">
+
+            @Html.Partial("Master/BreadCrumbs")
+
+            @Html.Partial("Master/PageHeading")
+
+            <div class="row mt20">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 mt40column">
+                    @if (Model.Content.HasProperty("headingImage") && Model.Content.HasValue("headingImage"))
+                        {
+                        var umbracoImage = Umbraco.TypedMedia(Model.Content.GetPropertyValue<Int32>("headingImage"));
+                        if (umbracoImage != null && umbracoImage.Id > 0)
+                            {
+                            var imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("pageHeading")) ? umbracoImage.GetCropUrl("pageHeading") : umbracoImage.GetCropUrl(900, 400);
+                            <div class="mb20">
+                                <img alt="@Model.Content.Name" src="@imageSrc">
+                            </div>
+                            }
+                        }
+
+                    @if (Model.Content.HasProperty("bodyText") && Model.Content.HasValue("bodyText"))
+                        {
+                        <div class="headingsubtitle">
+                            @Html.Raw(Model.Content.GetPropertyValue("bodyText"))
+                        </div>
+                        }
+
+                    <div class="mb20">
+                        @Html.AntiForgeryToken()
+                        <div id="calendar"></div>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt40column">
+                    @Html.Partial("Master/SideNavigation")
+                </div>
+
+            </div>
+        </div>
+}
+
+@section footerScripts{
+
+    <script type="text/javascript" src="/Scripts/EventCalendar/moment.min.js"></script>
+    <script type="text/javascript" src="/Scripts/EventCalendar/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="/Scripts/EventCalendar/gcal.js"></script>
+    <script type="text/javascript" src="/Scripts/EventCalendar/lang-all.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.qtip.min.js"></script>
+
+    <script type="text/javascript">
+        var event_details_url = '@eventDetailsPageUrl';
+
+        $(document).ready(function () {
+            var csrfToken = $("input[name='__RequestVerificationToken']").val();
+            var sources = [];
+            $.get("/umbraco/EventCalendar/ECApi/GetCalendarSources/", { id: '@id' }, function (data) {
+                $.each(data, function (key, data) {
+                    data.headers = { "X-XSRF-Token": csrfToken };
+                });
+                $('#calendar').fullCalendar({
+                    @if (null != calendar)
+                        {
+						    <text>defaultView: '@calendar.ViewMode',</text>
+		                }
+                        else {
+                            <text>defaultView: 'month',</text>
+                        }
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,basicWeek,basicDay'
+                    },
+                    lang: '@CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower()',
+                    eventSources: data,
+                    eventClick: function (event) {
+                        if (event.url) {
+                            window.open(event.url);
+                            return false;
+                        } else {
+                            if (event.type == 1) {
+                                window.location.href = event_details_url + '?id=' + event.id + '&type=1&calendar=' + event.calendar;
+                            } else {
+                                window.location.href = event_details_url + '?id=' + event.id + '&type=0&calendar=' + event.calendar;
+                            }
+                            return false;
+                        }
+                    },
+                    eventRender: function (event, element) {
+                        if (event.end != null) {
+                            element.qtip({
+                                content: {
+                                    text: "<h2>" + event.title + "</h2><h5>Start: " + event.start.format('llll') + "</h5><h5>End: " + event.end.format('llll') + "</h5><div>" + event.description + "</div>",
+                                    title: event.title
+                                },
+                                style: "qtip-blue"
+                            });
+                        } else {
+                            element.qtip({
+                                content: {
+                                    text: "<h2>" + event.title + "</h2><h5>Start: " + event.start.format('llll') + "</h5><div>" + event.description + "</div>",
+                                    title: event.title
+                                },
+                                style: "qtip-blue"
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

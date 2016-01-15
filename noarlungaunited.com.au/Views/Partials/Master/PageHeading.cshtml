@@ -1,0 +1,20 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var currentPageHeading = Model.Content.Name;
+    if (Model.Content.HasProperty("pageHeading") && Model.Content.HasValue("pageHeading"))
+        {
+        currentPageHeading = Model.Content.GetPropertyValue("pageHeading").ToString();
+        }
+        <div class="titles">
+            <div class="pull-left">
+                <h1 class="headinglefttitle">
+                    @currentPageHeading
+                </h1>
+            </div>
+            @if (Model.Content.HasProperty("pageIcon") && Model.Content.HasValue("pageIcon"))
+                {
+                var pageIcon = Model.Content.GetPropertyValue<string>("pageIcon");
+                <i class="fa fa-@pageIcon"></i>
+                }
+        </div>
+}

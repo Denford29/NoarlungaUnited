@@ -1,0 +1,114 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var homePage = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "HomePage");
+    if (homePage != null && homePage.Id > 0 && homePage.Descendants("NewsArticlePage").Any())
+        {
+        var newsLandingPage = homePage.Descendants("NewsLandingPage").FirstOrDefault();
+        var newsArticles = homePage.Descendants("NewsArticlePage")
+                .Where(article => article.HasValue("articleDate")
+                                  && article.GetPropertyValue<DateTime>
+                                      ("articleDate") != DateTime.MinValue)
+                .Take(3)
+                .ToList()
+                .OrderByDescending(article => article.GetPropertyValue<DateTime>("articleDate"));
+
+        <div class="col-lg-6 col-xs-12 col-sm-6 mt40column1">
+            <h2 class="heading1">
+                <span class="maintext">
+                    Latest News
+                </span>
+                @if (newsLandingPage != null && newsLandingPage.Id > 0)
+                    {
+                    <a class="btn btn-primary btn-small pull-right" href="@newsLandingPage.Url">View All</a>
+                    }
+
+            </h2>
+            @if (newsArticles.Any())
+                {
+                <ul class="latesttestimonials">
+                    @foreach (var article in newsArticles)
+                        {
+                            //var imageSrc = "/Images/News-Listing-Icon-Small.png";
+                        var imageSrc = "/Images/Noarlunga-United-Shield.png";
+                        var articleTitle = article.Name;
+                        if (article.HasProperty("linkTittle") && article.HasValue("linkTittle"))
+                            {
+                            articleTitle = article.GetPropertyValue("linkTittle").ToString();
+                            }
+                        <li>
+                            @if (article.HasProperty("headingImage") && article.HasValue("headingImage"))
+                                {
+                                var umbracoImage = Umbraco.TypedMedia(article.GetPropertyValue<Int32>("headingImage"));
+                                if (umbracoImage != null && umbracoImage.Id > 0)
+                                    {
+                                    imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("listingThumb")) ? umbracoImage.GetCropUrl("listingThumb") : umbracoImage.GetCropUrl(50, 50);
+                                    }
+                                }
+
+                            <a href="@article.Url" title="@articleTitle">
+                                <img class="imageleft" src="@imageSrc" alt="@articleTitle" title="@articleTitle">
+                            </a>
+
+                            <div class="detail">
+                                <h4 class="heading3">
+                                    <a href="@article.Url" title="@articleTitle">
+                                        @articleTitle
+                                    </a>
+                                </h4>
+
+                                @if (article.HasProperty("bodyText") && article.HasValue("bodyText"))
+                                    {
+                                    var nonHtmlContent = Umbraco.StripHtml(article.GetPropertyValue("bodyText").ToString());
+                                    var trimmedBodyText = Umbraco.Truncate(nonHtmlContent, 150);
+                                    <p>
+                                        @Html.Raw(trimmedBodyText)
+                                    </p>
+                                    }
+                                @if (article.HasProperty("articleDate") && article.HasValue("articleDate"))
+                                    {
+                                        var articleDate = article.GetPropertyValue<DateTime>("articleDate");
+                                        <span class="orange">
+                                        @articleDate.ToLongDateString()
+                                    </span>
+                                    }
+                            </div>
+                        </li>
+                        }
+                </ul>
+                }
+        </div>
+        }
+}
+
+@*<div class="col-lg-6 col-xs-12 col-sm-6 mt40column1">
+        <h2 class="heading1">
+            <span class="maintext">
+                Latest News
+            </span>
+            <a class="btn btn-primary btn-small pull-right">View All</a>
+        </h2>
+        <ul class="latesttestimonials">
+            <li>
+                <img class="imageleft" src="/Images/News-Listing-Icon-Small.png" alt="product" title="product">
+                <div class="detail">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s. "<br>
+                    by : <span class="orange">pxcreate</span>
+                </div>
+            </li>
+            <li>
+                <img class="imageleft" src="/Images/News-Listing-Icon-Small.png" alt="product" title="product">
+                <div class="detail">
+                    " Lorem Ipsum is simply dummy text of the printing and typesetting industry."<br>
+                    by : <span class="orange">pxcreate</span>
+                </div>
+            </li>
+            <li>
+                <img class="imageleft" src="/Images/News-Listing-Icon-Small.png" alt="product" title="product">
+                <div class="detail">
+                    " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s. " <br>
+                    by : <span class="orange">pxcreate</span>
+                </div>
+            </li>
+        </ul>
+    </div>*@

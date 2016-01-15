@@ -1,0 +1,30 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var selection = Model.Content.Ancestors().ToList();
+    if (selection.Any())
+        {
+        var currentPageTitle = Model.Content.Name;
+        if (Model.Content.HasProperty("linkTittle") && Model.Content.HasValue("linkTittle"))
+            {
+            currentPageTitle = Model.Content.GetPropertyValue("linkTittle").ToString();
+            }
+        <ul class="breadcrumb">
+            @foreach (var item in selection.OrderBy("Level"))
+                {
+                var pageTitle = item.Name;
+                if (item.HasProperty("linkTittle") && item.HasValue("linkTittle"))
+                    {
+                    pageTitle = item.GetPropertyValue("linkTittle").ToString();
+                    }
+                <li>
+                    <a href="@item.Url" title="@pageTitle">
+                        @pageTitle
+                    </a>
+                </li>
+                }
+            <li class="active">
+                @currentPageTitle
+            </li>
+        </ul>
+        }
+}

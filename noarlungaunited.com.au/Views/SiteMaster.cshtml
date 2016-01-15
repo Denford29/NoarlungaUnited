@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    @Html.Partial("Master/HeaderContent")
+
+    <!-- Bootstrap -->
+    <link href="/Css/bootstrap.css" rel="stylesheet">
+    <link href="/Css/mainstyles.css" rel="stylesheet">
+    <link href="/Css/font-awesome.css" rel="stylesheet">
+
+    <script type="text/javascript" src="/Scripts/jquery.min.1.11.3.js"></script>
+
+    @RenderSection("headerCss", false)
+
+    <!--[if lt IE 9]>
+        <script src="/Scripts/html5shiv.min.js"></script>
+        <script src="/Scripts/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    @Html.Partial("Master/MainNavigation")
+
+    @RenderSection("pageSlider", false)
+
+    <div class="container">
+        @RenderBody()
+
+    </div>
+
+    @Html.Partial("Master/FooterSponsors")
+
+    @Html.Partial("Master/FooterContent")
+
+    @*<script type="text/javascript" src="/Scripts/jquery.min.1.11.3.js"></script>*@
+    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Scripts/mainScripts.js"></script>
+
+    @RenderSection("footerScripts", false)
+</body>
+</html>
