@@ -4,41 +4,103 @@
 
 @{
     Layout = "SiteMaster.cshtml";
-    <div class="container">
 
-        @Html.Partial("Master/BreadCrumbs")
+    var sponsorName = Model.Content.Name;
+    if (Model.Content.HasProperty("linkTittle") && Model.Content.HasValue("linkTittle"))
+        {
+        sponsorName = Model.Content.GetPropertyValue("linkTittle").ToString();
+        }
 
-        @Html.Partial("Master/PageHeading")
+        <div class="container">
 
-        <div class="row mt20">
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 mt40column">
-                @if (Model.Content.HasProperty("headingImage") && Model.Content.HasValue("headingImage"))
-                    {
-                    var umbracoImage = Umbraco.TypedMedia(Model.Content.GetPropertyValue<Int32>("headingImage"));
-                    if (umbracoImage != null && umbracoImage.Id > 0)
+            @Html.Partial("Master/BreadCrumbs")
+
+            @Html.Partial("Master/PageHeading")
+
+            <div class="row mt20">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 mt40column">
+                    @if (Model.Content.HasProperty("headingImage") && Model.Content.HasValue("headingImage"))
                         {
-                        var imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("pageHeading")) ? umbracoImage.GetCropUrl("pageHeading") : umbracoImage.GetCropUrl(900, 400);
-                        <div class="mb20">
-                            <img alt="@Model.Content.Name" src="@imageSrc">
+                        var umbracoImage = Umbraco.TypedMedia(Model.Content.GetPropertyValue<Int32>("headingImage"));
+                        if (umbracoImage != null && umbracoImage.Id > 0)
+                            {
+                            var imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("pageHeading")) ? umbracoImage.GetCropUrl("pageHeading") : umbracoImage.GetCropUrl(1000, 300);
+                            <div class="mb20">
+                                <img alt="@sponsorName" src="@imageSrc">
+                            </div>
+                            }
+                        }
+
+                    <div class="row mt20 mb20">
+                        @if (Model.Content.HasProperty("sponsorLogo") && Model.Content.HasValue("sponsorLogo"))
+                            {
+                            var mediaItem = Umbraco.TypedMedia(Model.Content.GetPropertyValue("sponsorLogo").ToString());
+                            if (mediaItem != null && mediaItem.Id > 0)
+                                {
+                                var sponsorImage = !string.IsNullOrEmpty(mediaItem.GetCropUrl("pageListing")) ? mediaItem.GetCropUrl("pageListing") : mediaItem.GetCropUrl(400, 100);
+                                <div class="col-sm-6 col-xs-12">
+                                    <img src="@sponsorImage" alt="@sponsorName" title="@sponsorName" />
+                                </div>
+                                }
+                            }
+                        <div class="col-sm-6 col-xs-12">
+                            @if (Model.Content.HasProperty("sponsorPhoneNumber") && Model.Content.HasValue("sponsorPhoneNumber"))
+                                {
+                                <p>
+                                    <i class="fa fa-phone-square fa-fw"></i>
+                                    @if (sponsorName != null)
+                                        {
+                                        @sponsorName
+                                        }
+                                    Phone : @Model.Content.GetPropertyValue("sponsorPhoneNumber")
+                                </p>
+                                }
+                            @if (Model.Content.HasProperty("sponsorEmail") && Model.Content.HasValue("sponsorEmail"))
+                                {
+                                <p>
+                                    <i class="fa fa-mail-forward fa-fw"></i>
+                                    @if (sponsorName != null)
+                                        {
+                                        @sponsorName
+                                        }
+                                    Email : @Model.Content.GetPropertyValue("sponsorEmail")
+                                </p>
+                                }
+                            @if (Model.Content.HasProperty("sponsorAddress") && Model.Content.HasValue("sponsorAddress"))
+                                {
+                                <p>
+                                    <i class="fa fa-location-arrow fa-fw"></i>
+                                    @if (sponsorName != null)
+                                        {
+                                        @sponsorName
+                                        }
+                                    Address : @Model.Content.GetPropertyValue("sponsorAddress")
+                                </p>
+                                }
+                            @if (Model.Content.HasProperty("sponsorWebsiteLink") && Model.Content.HasValue("sponsorWebsiteLink"))
+                                {
+                                <a class="btn btn-primary" href="@Model.Content.GetPropertyValue("sponsorWebsiteLink")" title="@sponsorName" target="_blank">
+                                    @sponsorName Website
+                                </a>
+                                }
+                        </div>
+                    </div>
+
+                    @if (Model.Content.HasProperty("bodyText") && Model.Content.HasValue("bodyText"))
+                        {
+                        <div class="headingsubtitle">
+                            @Html.Raw(Model.Content.GetPropertyValue("bodyText"))
                         </div>
                         }
-                    }
 
-                @if (Model.Content.HasProperty("bodyText") && Model.Content.HasValue("bodyText"))
-                    {
-                    <div class="headingsubtitle">
-                        @Html.Raw(Model.Content.GetPropertyValue("bodyText"))
-                    </div>
-                    }
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt40column">
+                    @Html.Partial("Master/SideNavigation")
+                </div>
 
             </div>
-
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt40column">
-                @Html.Partial("Master/SideNavigation")
-            </div>
-
         </div>
-    </div>
 }
 
 @section footerScripts{

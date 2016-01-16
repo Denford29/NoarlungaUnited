@@ -4,6 +4,8 @@
     var siteAddress = "Wilfred Taylor Reserve, Sports Park Dr, Morphett Vale SA 5162";
     var sitePhoneNumber = "(08) 8326 2855";
     var siteEmailAddress = "support@noarlungaunited.com.au";
+    var facebookLink = "https://www.facebook.com/noarlungaunited";
+    var twitterLink = "https://www.facebook.com/noarlungaunited";
     var siteSetting = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "GlobalSettings");
     if (siteSetting != null && siteSetting.Id > 0 && siteSetting.Descendants("SiteDetails").Any())
         {
@@ -30,6 +32,14 @@
                 {
                 siteEmailAddress = siteDetailsPage.GetPropertyValue("siteEmailAddress").ToString();
                 }
+            if (siteDetailsPage.HasProperty("facebookPage") && siteDetailsPage.HasValue("facebookPage"))
+                {
+                facebookLink = siteDetailsPage.GetPropertyValue("facebookPage").ToString();
+                }
+            if (siteDetailsPage.HasProperty("twitterPage") && siteDetailsPage.HasValue("twitterPage"))
+                {
+                twitterLink = siteDetailsPage.GetPropertyValue("twitterPage").ToString();
+                }
             }
         }
         <!-- Footer -Start -->
@@ -51,6 +61,16 @@
                                 </li>
                                 <li class="email">
                                     @siteEmailAddress
+                                </li>
+                                <li>
+                                    <a href="@facebookLink" title="facebook" target="_blank">
+                                        <i class="fa fa-facebook-square fa-fw"></i> Noarlunga United on Facebook
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@twitterLink" title="twitter" target="_blank">
+                                        <i class="fa fa-twitter-square fa-fw"></i> Noarlunga United on Twitter
+                                    </a>
                                 </li>
                             </ul>
                         </div>

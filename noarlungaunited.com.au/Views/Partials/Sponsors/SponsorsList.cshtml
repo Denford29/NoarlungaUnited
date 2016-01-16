@@ -1,0 +1,58 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    var childSections = Model.Content.Descendants().Where(childPage => childPage.ContentType.Alias == "SponsorPage").ToList();
+    if (childSections.Any())
+    {
+    var r = new Random();
+    var orderedSponsorPages = childSections.OrderBy(x => r.Next()).ToList();
+
+        <div class="mt20 mb20">
+            <h2 class="heading1">
+                All Club Sponsors
+            </h2>
+
+            @foreach (var rowSponsors in orderedSponsorPages.InGroupsOf(3))
+                {
+                <div class="row mt20">
+                    @foreach (var sponsor in rowSponsors)
+                        {
+                        var sponsorImage = "/Images/Default-Sponsor-Logo.png";
+                        if (sponsor.HasProperty("sponsorLogo") && sponsor.HasValue("sponsorLogo"))
+                            {
+                            var mediaItem = Umbraco.TypedMedia(sponsor.GetPropertyValue("sponsorLogo").ToString());
+                            if (mediaItem != null && mediaItem.Id > 0)
+                                {
+                                sponsorImage = !string.IsNullOrEmpty(mediaItem.GetCropUrl("pageListing")) ? mediaItem.GetCropUrl("pageListing") : mediaItem.GetCropUrl(400, 100);
+                                }
+                            }
+                        var sponsorName = sponsor.Name;
+                        if (sponsor.HasProperty("linkTittle") && sponsor.HasValue("linkTittle"))
+                            {
+                            sponsorName = sponsor.GetPropertyValue("linkTittle").ToString();
+                            }
+                        <div class="col-sm-4 col-xs-12 mb20">
+                            <a href="@sponsor.Url" title="@sponsor.Name">
+                                <img src="@sponsorImage" alt="@sponsor.Name" title="@sponsor.Name" />
+                            </a>
+                            <h4 class="heading3">
+                                @sponsorName
+                            </h4>
+                            @if (sponsor.HasProperty("bodyText") && sponsor.HasValue("bodyText"))
+                                {
+                                var nonHtmlContent = Umbraco.StripHtml(sponsor.GetPropertyValue("bodyText").ToString());
+                                var trimmedBodyText = Umbraco.Truncate(nonHtmlContent, 100);
+                                <p>
+                                    @Html.Raw(trimmedBodyText)
+                                </p>
+                                }
+                            <a class="btn btn-primary btn-small pull-right" href="@sponsor.Url" title="@sponsor.Name">
+                                @sponsorName
+                            </a>
+                        </div>
+                        }
+                </div>
+                }
+        </div>
+        
+    }
+}

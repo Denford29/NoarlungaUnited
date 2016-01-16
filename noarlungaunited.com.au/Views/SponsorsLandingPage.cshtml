@@ -17,7 +17,7 @@
                     var umbracoImage = Umbraco.TypedMedia(Model.Content.GetPropertyValue<Int32>("headingImage"));
                     if (umbracoImage != null && umbracoImage.Id > 0)
                         {
-                        var imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("pageHeading")) ? umbracoImage.GetCropUrl("pageHeading") : umbracoImage.GetCropUrl(900, 400);
+                        var imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("pageHeading")) ? umbracoImage.GetCropUrl("pageHeading") : umbracoImage.GetCropUrl(1000, 300);
                         <div class="mb20">
                             <img alt="@Model.Content.Name" src="@imageSrc">
                         </div>
@@ -30,6 +30,8 @@
                         @Html.Raw(Model.Content.GetPropertyValue("bodyText"))
                     </div>
                     }
+
+                @Html.Partial("Sponsors/SponsorsList")
 
             </div>
 

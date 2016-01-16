@@ -1040,6 +1040,7 @@
     <Content Include="App_Plugins\Optimus\Views\Dialog.cshtml" />
     <Content Include="App_Plugins\Optimus\Views\Index.cshtml" />
     <Content Include="App_Plugins\Optimus\Views\Web.config" />
+    <Content Include="Views\Partials\Sponsors\SponsorsList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
