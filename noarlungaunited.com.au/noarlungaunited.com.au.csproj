@@ -1041,6 +1041,8 @@
     <Content Include="App_Plugins\Optimus\Views\Index.cshtml" />
     <Content Include="App_Plugins\Optimus\Views\Web.config" />
     <Content Include="Views\Partials\Sponsors\SponsorsList.cshtml" />
+    <Content Include="Views\Partials\Team\MembersList.cshtml" />
+    <Content Include="Views\Partials\Team\TeamsList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,18 @@
+﻿@using Umbraco.Core;
+@using Umbraco.Core.Models;
+@using Umbraco.Core.Services;
+@inherits UmbracoTemplatePage
+@{
+    var memberService = ApplicationContext.Current.Services.MemberService;
+    var teamMembers = memberService.GetMembersByPropertyValue("memberTeam", Model.Content.Id.ToString());
+
+    if (teamMembers.Any())
+    {
+        foreach (var member in teamMembers)
+        {
+            <p>
+               @member.Email
+            </p>
+        }
+    }
+}

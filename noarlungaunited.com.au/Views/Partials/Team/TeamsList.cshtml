@@ -1,0 +1,43 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var childSections = Model.Content.Descendants().Where(childPage => childPage.ContentType.Alias == "TeamPage").ToList();
+    if (childSections.Any())
+        {
+        var r = new Random();
+        var orderedTeamPages = childSections.OrderBy(x => r.Next()).ToList();
+
+        <div class="mt20 mb20">
+            <h2 class="heading1">
+                All Teams
+            </h2>
+
+            @foreach (var rowTeams in orderedTeamPages.InGroupsOf(3))
+                {
+                <div class="row mt20">
+                    @foreach (var team in rowTeams)
+                        {
+                        var teamName = team.Name;
+                        if (team.HasProperty("linkTittle") && team.HasValue("linkTittle"))
+                            {
+                            teamName = team.GetPropertyValue("linkTittle").ToString();
+                            }
+                            <div class="col-sm-4 col-xs-12 mb20 text-center">
+                                <h4 class="heading3">
+                                    @teamName
+                                </h4>
+                                <p>
+                                    <i class="fa fa-users fa-5x"></i>
+                                </p>
+                                <p>
+                                    <a class="btn btn-primary" href="@team.Url" title="@teamName">
+                                        @teamName
+                                    </a>
+                                </p>
+                            </div>
+                        }
+                </div>
+                }
+
+        </div>
+        }
+}
