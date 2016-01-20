@@ -1,0 +1,86 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+
+    if (Model.Content.HasProperty("locationMap") && Model.Content.HasValue("locationMap"))
+        {
+        var gmapLocation = Model.Content.GetPropertyValue<GMapsLocation>("locationMap");
+        var locationAddress = "";
+        var setAddress = new string[] { };
+        if (Model.Content.HasProperty("locationAddress") && Model.Content.HasValue("locationAddress"))
+            {
+            setAddress = Model.Content.GetPropertyValue<string[]>("locationAddress");
+            locationAddress = setAddress.Aggregate(locationAddress, (current, address) => current + (address.Replace(" ", "+") + ","));
+            }
+
+        <div class="row mt20 mb20 visible-sm visible-xs">
+            <div class="col-sm-12 mobileLocation text-center">
+                @if (setAddress.Any())
+                    {
+                    <hr />
+                    <h3 class="section-heading">
+                        Our Address
+                    </h3>
+                    <hr />
+                    foreach (var address in setAddress)
+                        {
+                        <p>
+                            @address
+                        </p>
+                        }
+                    }
+                <a href="https://maps.google.com/maps?q=@locationAddress&amp;output=embed" class="btn btn-primary" title="Directions">
+                    View Location on map
+                </a>
+            </div>
+        </div>
+
+        <div id="locationMap" class="hidden-sm hidden-xs row mt20 mb20">
+            @if (setAddress.Any())
+                {
+                <div class="doubleBorderTop doubleBorderBottom">
+                    <h3 class="section-heading">
+                        Visit Us...
+                        <a href="#ContactForm" class="btn btn-primary pull-right">
+                            Or Contact Us
+                        </a>
+                    </h3>
+                    
+                </div>
+
+    <div class="text-center mt20 mb20">
+        @foreach (var address in setAddress)
+            {
+            <p>
+                <strong>
+                    @address
+                </strong>
+            </p>
+            }
+        <a href="https://maps.google.com/maps?q=@locationAddress&amp;output=embed" class="btn btn-primary" title="Directions" target="_blank">
+            View Location on map
+        </a>
+    </div>
+                }
+            <div id="mapContainer" style="height: 400px">
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var myLatlng = new google.maps.LatLng(@gmapLocation.Lat,@gmapLocation.Lng);
+                var mapOptions = {
+                    center: myLatlng,
+                    zoom: 14,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById("mapContainer"),
+                    mapOptions);
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    map: map,
+                    title:"Noarlunga United Soccer Club"
+                });
+            });
+        </script>
+        }
+}

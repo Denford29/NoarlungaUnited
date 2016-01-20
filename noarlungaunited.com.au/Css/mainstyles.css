@@ -138,6 +138,14 @@ ul, ul li {
     font-size: 124px;
 }
 
+.doubleBorderTop {
+    border-top: 4px double #e7e7e7;
+}
+
+.doubleBorderBottom {
+    border-Bottom: 4px double #e7e7e7;
+}
+
 /*---- Header logos ---- */
 
 .LogoHeading h1.headingcenter {

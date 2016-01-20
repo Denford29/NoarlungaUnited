@@ -1,5 +1,6 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @section headerCss{
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 }
 
 @{
@@ -30,6 +31,8 @@
                         @Html.Raw(Model.Content.GetPropertyValue("bodyText"))
                     </div>
                     }
+
+                @Html.Partial("Contact/LocationMap")
 
             </div>
 

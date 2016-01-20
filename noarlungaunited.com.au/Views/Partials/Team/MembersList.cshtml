@@ -6,13 +6,108 @@
     var memberService = ApplicationContext.Current.Services.MemberService;
     var teamMembers = memberService.GetMembersByPropertyValue("memberTeam", Model.Content.Id.ToString());
 
+
     if (teamMembers.Any())
-    {
-        foreach (var member in teamMembers)
         {
-            <p>
-               @member.Email
-            </p>
+        var teamCoaches = new List<IPublishedContent>();
+        var teamPlayers = new List<IPublishedContent>();
+        foreach (var member in teamMembers)
+            {
+            var umbracoMember = Umbraco.TypedMember(member.Id);
+            if (umbracoMember != null && umbracoMember.Id > 0)
+                {
+                if (umbracoMember.HasProperty("memberType") && umbracoMember.HasValue("memberType"))
+                    {
+                    var memberType = umbracoMember.GetPropertyValue<string>("memberType");
+                    if (memberType == "Coach")
+                        {
+                        teamCoaches.Add(umbracoMember);
+                        }
+                    else if (memberType == "Player")
+                        {
+                        teamPlayers.Add(umbracoMember);
+                        }
+                    }
+                }
+            }
+
+        <div class="mt20 mb20">
+            <h2 class="heading1">
+                Teams Members
+            </h2>
+
+            @if (teamCoaches.Any())
+                {
+                <h3>
+                    Coaches
+                </h3>
+                foreach (var rowCoaches in teamCoaches.InGroupsOf(3))
+                    {
+                    <div class="row mt20 mb20 doubleBorderTop doubleBorderBottom">
+                        @foreach (var coach in rowCoaches)
+                            {
+                            var name = coach.Name;
+                            if (coach.HasProperty("fullName") && coach.HasValue("fullName"))
+                                {
+                                name = coach.GetPropertyValue<string>("fullName");
+                                }
+                            <div class="col-sm-4 col-xs-12 mb20 text-center">
+                                <h4 class="heading3">
+                                    @name
+                                </h4>
+                                <p>
+                                    <i class="fa fa-user fa-5x"></i>
+                                </p>
+                                @if (coach.HasProperty("position") && coach.HasValue("position"))
+                                    {
+                                    <p>
+                                        <strong>
+                                            @coach.GetPropertyValue("position")
+                                        </strong>
+                                    </p>
+
+                                    }
+                            </div>
+                            }
+                    </div>
+                    }
+                }
+
+            @if (teamPlayers.Any())
+                {
+                <h3>
+                    Players
+                </h3>
+                foreach (var rowPlayer in teamPlayers.InGroupsOf(3))
+                    {
+                    <div class="row mt20 mb20 doubleBorderTop doubleBorderBottom">
+                        @foreach (var player in rowPlayer)
+                            {
+                            var name = player.Name;
+                            if (player.HasProperty("fullName") && player.HasValue("fullName"))
+                                {
+                                name = player.GetPropertyValue<string>("fullName");
+                                }
+                            <div class="col-sm-4 col-xs-12 mb20 text-center">
+                                <h4 class="heading3">
+                                    @name
+                                </h4>
+                                <p>
+                                    <i class="fa fa-user fa-5x"></i>
+                                </p>
+                                @if (player.HasProperty("position") && player.HasValue("position"))
+                                    {
+                                    <p>
+                                        <strong>
+                                            @player.GetPropertyValue("position")
+                                        </strong>
+                                    </p>
+                                    }
+                            </div>
+                            }
+                    </div>
+                    }
+                }
+        </div>
         }
-    }
 }

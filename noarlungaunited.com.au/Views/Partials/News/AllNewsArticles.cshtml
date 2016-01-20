@@ -1,0 +1,72 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var newsArticles = Model.Content.Descendants("NewsArticlePage")
+                .Where(article => article.HasValue("articleDate")
+                                  && article.GetPropertyValue<DateTime>
+                                      ("articleDate") != DateTime.MinValue)
+                .Take(3)
+                .ToList()
+                .OrderByDescending(article => article.GetPropertyValue<DateTime>("articleDate"));
+    if (newsArticles.Any())
+        {
+        <div class="mt20 mb20">
+            <h2 class="heading1 doubleBorderBottom">
+                All News Articles
+            </h2>
+
+            @foreach (var rowArticles in newsArticles.InGroupsOf(3))
+                {
+                <div class="row mt20">
+                    @foreach (var article in rowArticles)
+                        {
+                        var imageSrc = "/Images/Noarlunga-United-Shield.png";
+                        if (article.HasProperty("headingImage") && article.HasValue("headingImage"))
+                            {
+                            var umbracoImage = Umbraco.TypedMedia(article.GetPropertyValue<Int32>("headingImage"));
+                            if (umbracoImage != null && umbracoImage.Id > 0)
+                                {
+                                imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("ArticleThumb")) ? umbracoImage.GetCropUrl("ArticleThumb") : umbracoImage.GetCropUrl(250, 250);
+                                }
+                            }
+                        
+                        var articleTitle = article.Name;
+                        if (article.HasProperty("linkTittle") && article.HasValue("linkTittle"))
+                            {
+                            articleTitle = article.GetPropertyValue("linkTittle").ToString();
+                            }
+                        <div class="col-sm-4 col-xs-12 mb20 text-center">
+                            <h4 class="heading3">
+                                <a href="@article.Url" title="@articleTitle">
+                                    @articleTitle
+                                </a>
+                            </h4>
+                            <img class="imageleft" src="@imageSrc" alt="@articleTitle" title="@articleTitle">
+                            @if (article.HasProperty("bodyText") && article.HasValue("bodyText"))
+                                {
+                                var nonHtmlContent = Umbraco.StripHtml(article.GetPropertyValue("bodyText").ToString());
+                                var trimmedBodyText = Umbraco.Truncate(nonHtmlContent, 150);
+                                <p>
+                                    @Html.Raw(trimmedBodyText)
+                                </p>
+                                }
+                            @if (article.HasProperty("articleDate") && article.HasValue("articleDate"))
+                                {
+                                var articleDate = article.GetPropertyValue<DateTime>("articleDate");
+                                <span class="orange">
+                                    @articleDate.ToLongDateString()
+                                </span>
+                                }
+                            <p>
+                                <a class="btn btn-primary" href="@article.Url" title="@articleTitle">
+                                    @articleTitle
+                                </a>
+                            </p>
+                        </div>       
+                        }
+                </div>
+                }
+
+
+        </div>
+        }
+}

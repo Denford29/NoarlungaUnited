@@ -552,6 +552,26 @@
     <Content Include="App_Plugins\FontAwesomeIconsDD\assets\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="App_Plugins\FontAwesomeIconsDD\FontAwesomeIconsDD.controller.js" />
     <Content Include="App_Plugins\FontAwesomeIconsDD\FontAwesomeIconsDD.html" />
+    <Content Include="App_Plugins\GMaps\assets\css\gmaps.css" />
+    <Content Include="App_Plugins\GMaps\GMaps.controller.js" />
+    <Content Include="App_Plugins\GMaps\GMaps.html" />
+    <Content Include="App_Plugins\GMaps\langs\da-dk.js" />
+    <Content Include="App_Plugins\GMaps\langs\de-de.js" />
+    <Content Include="App_Plugins\GMaps\langs\en-gb.js" />
+    <Content Include="App_Plugins\GMaps\langs\en-us.js" />
+    <Content Include="App_Plugins\GMaps\langs\es-es.js" />
+    <Content Include="App_Plugins\GMaps\langs\fr-fr.js" />
+    <Content Include="App_Plugins\GMaps\langs\he-il.js" />
+    <Content Include="App_Plugins\GMaps\langs\it-it.js" />
+    <Content Include="App_Plugins\GMaps\langs\ja-jp.js" />
+    <Content Include="App_Plugins\GMaps\langs\ko-kr.js" />
+    <Content Include="App_Plugins\GMaps\langs\nb-no.js" />
+    <Content Include="App_Plugins\GMaps\langs\nl-nl.js" />
+    <Content Include="App_Plugins\GMaps\langs\pl-pl.js" />
+    <Content Include="App_Plugins\GMaps\langs\pt-br.js" />
+    <Content Include="App_Plugins\GMaps\langs\ru-ru.js" />
+    <Content Include="App_Plugins\GMaps\langs\sv-se.js" />
+    <Content Include="App_Plugins\GMaps\langs\zh-cn.js" />
     <Content Include="App_Plugins\Optimus\Content\images\application.png" />
     <Content Include="App_Plugins\Optimus\Content\images\code.png" />
     <Content Include="App_Plugins\Optimus\Content\images\cross.png" />
@@ -666,6 +686,8 @@
     <Content Include="App_Plugins\Optimus\Icons\typescript-icon-grey.png" />
     <Content Include="App_Plugins\Optimus\Icons\typescript-icon.png" />
     <Content Include="App_Plugins\Optimus\Pages\FileEditor.aspx" />
+    <Content Include="App_Plugins\GMaps\package.manifest" />
+    <Content Include="App_Code\pagingtemplate.cshtml" />
     <None Include="App_Plugins\Optimus\Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="App_Plugins\Optimus\Scripts\jquery-2.0.3.js" />
     <Content Include="App_Plugins\Optimus\Scripts\jquery-2.0.3.min.js" />
@@ -1043,6 +1065,8 @@
     <Content Include="Views\Partials\Sponsors\SponsorsList.cshtml" />
     <Content Include="Views\Partials\Team\MembersList.cshtml" />
     <Content Include="Views\Partials\Team\TeamsList.cshtml" />
+    <Content Include="Views\Partials\News\AllNewsArticles.cshtml" />
+    <Content Include="Views\Partials\Contact\LocationMap.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3512,6 +3536,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\GMapsLocation.cs" />
+    <Content Include="App_Code\GMapsValueConverter.cs" />
+    <Content Include="App_Code\paging.cs" />
     <Compile Include="Controllers\ContactSurfaceController.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
