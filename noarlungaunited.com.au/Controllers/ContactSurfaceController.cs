@@ -32,7 +32,7 @@ namespace noarlungaunited.com.au.Controllers
             try
                 {
                 const string mailBody =
-                    "Thank you for contacting Noarlunga United Soccer Club, we have got your enquiry and a member of the team will get back to you as soon as posible.<br /> <br />Regards, <br /> Sarah";
+                    "Thank you for contacting Noarlunga United Soccer Club, we have recieved your enquiry and a member of the team will get back to you as soon as possible.<br /> <br />Regards, <br /> Noarlunga United Team";
                 var userEmailMessage = new MailMessage
                 {
                     Subject = "Your Contact on Noarlunga United Soccer Club",
