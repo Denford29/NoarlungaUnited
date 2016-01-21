@@ -793,6 +793,7 @@
     <Content Include="Css\mainstyles.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="google580741c516edc2bf.html" />
     <Content Include="Images\Bank-SA.png" />
     <Content Include="Images\Biscany.png" />
     <Content Include="Images\Budget-Garden-Care.png" />
