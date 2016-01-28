@@ -24,7 +24,9 @@
 
     @RenderSection("pageSlider", false)
 
-    <div class="container">
+    @Html.Partial("Master/AccreditationsList")
+
+<div class="container">
         @RenderBody()
 
     </div>

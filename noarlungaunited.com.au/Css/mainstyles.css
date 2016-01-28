@@ -399,6 +399,20 @@ ul.mainmenucontain > li > div ul > li > a {
     height: 500px;
 }
 
+/* ------------ Accreditations ------------ */
+
+.accreditations {
+    /*background: none repeat scroll 0 0 #83d4fa;*/
+    background: none repeat scroll 0 0 #f2f2f2;
+    padding: 10px 0;
+    border-top: 4px double #CCCCCC;
+    border-bottom: 4px double #CCCCCC;
+}
+
+    .accreditations img {
+        width: 70%;
+    }
+
 /*---- Main Content ----*/
 h1.headingcenter {
     text-align: center;

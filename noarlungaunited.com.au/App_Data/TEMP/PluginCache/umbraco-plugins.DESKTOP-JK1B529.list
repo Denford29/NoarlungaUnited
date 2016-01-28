@@ -65,7 +65,7 @@
     <add type="Umbraco.Core.PropertyEditors.ValueConverters.TinyMceValueConverter, Umbraco.Core, Version=1.0.5820.25371, Culture=neutral, PublicKeyToken=null" />
     <add type="Umbraco.Core.PropertyEditors.ValueConverters.DatePickerValueConverter, Umbraco.Core, Version=1.0.5820.25371, Culture=neutral, PublicKeyToken=null" />
     <add type="Umbraco.Core.PropertyEditors.ValueConverters.YesNoValueConverter, Umbraco.Core, Version=1.0.5820.25371, Culture=neutral, PublicKeyToken=null" />
-    <add type="GMapsValueConverter, App_Code.azrse7dn, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <add type="GMapsValueConverter, App_Code.6s46ljc0, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <add type="Umbraco.Web.PropertyEditors.ValueConverters.MacroContainerValueConverter, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
     <add type="Umbraco.Web.PropertyEditors.ValueConverters.RelatedLinksEditorValueConvertor, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
     <add type="Umbraco.Web.PropertyEditors.ValueConverters.MarkdownEditorValueConverter, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
@@ -231,11 +231,17 @@
     <add type="Umbraco.Web.Trees.ContentTreeController, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
     <add type="Analytics.Controllers.AnalyticsTreeController, Analytics, Version=1.2.0.73, Culture=neutral, PublicKeyToken=null" />
   </baseType>
+  <baseType type="umbraco.interfaces.IApplication" resolutionType="FindTypesWithAttribute">
+    <add type="umbraco.businesslogic.ContentApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
+    <add type="umbraco.businesslogic.MediaApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
+    <add type="umbraco.businesslogic.SettingsApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
+    <add type="umbraco.businesslogic.DeveloperApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
+    <add type="umbraco.businesslogic.UsersApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
+    <add type="umbraco.businesslogic.MembersApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
+    <add type="umbraco.businesslogic.TranslationApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
+  </baseType>
   <baseType type="umbraco.interfaces.ITree" resolutionType="FindAllTypes">
-    <add type="umbraco.editorControls.MultiNodeTreePicker.FilteredContentTree, umbraco.editorControls, Version=1.0.5820.25381, Culture=neutral, PublicKeyToken=null" />
-    <add type="umbraco.editorControls.MultiNodeTreePicker.FilteredMediaTree, umbraco.editorControls, Version=1.0.5820.25381, Culture=neutral, PublicKeyToken=null" />
     <add type="Our.Umbraco.Tree.Config.LoadConfigFiles, Our.Umbraco.Tree.Config, Version=3.1.1.0, Culture=neutral, PublicKeyToken=null" />
-    <add type="Optimus.Umbraco.Trees.BundlingAndMinificationTree, Optimus, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null" />
     <add type="umbraco.loadPackager, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
     <add type="Umbraco.Web.Trees.PartialViewsTree, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
     <add type="Umbraco.Web.Trees.PartialViewMacrosTree, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
@@ -269,10 +275,12 @@
     <add type="umbraco.cms.presentation.Trees.LegacyTree, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
     <add type="umbraco.cms.presentation.Trees.UserPermissions, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
     <add type="umbraco.cms.presentation.Trees.UserTypes, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
+    <add type="Optimus.Umbraco.Trees.BundlingAndMinificationTree, Optimus, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null" />
+    <add type="umbraco.editorControls.MultiNodeTreePicker.FilteredContentTree, umbraco.editorControls, Version=1.0.5820.25381, Culture=neutral, PublicKeyToken=null" />
+    <add type="umbraco.editorControls.MultiNodeTreePicker.FilteredMediaTree, umbraco.editorControls, Version=1.0.5820.25381, Culture=neutral, PublicKeyToken=null" />
   </baseType>
   <baseType type="umbraco.interfaces.ITree" resolutionType="FindTypesWithAttribute">
     <add type="Our.Umbraco.Tree.Config.LoadConfigFiles, Our.Umbraco.Tree.Config, Version=3.1.1.0, Culture=neutral, PublicKeyToken=null" />
-    <add type="Optimus.Umbraco.Trees.BundlingAndMinificationTree, Optimus, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null" />
     <add type="umbraco.loadPackager, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
     <add type="umbraco.loadRelationTypes, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
     <add type="umbraco.loadDictionary, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
@@ -290,15 +298,7 @@
     <add type="umbraco.loadXslt, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
     <add type="umbraco.cms.presentation.Trees.UserPermissions, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
     <add type="umbraco.cms.presentation.Trees.UserTypes, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />
-  </baseType>
-  <baseType type="umbraco.interfaces.IApplication" resolutionType="FindTypesWithAttribute">
-    <add type="umbraco.businesslogic.ContentApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
-    <add type="umbraco.businesslogic.MediaApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
-    <add type="umbraco.businesslogic.SettingsApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
-    <add type="umbraco.businesslogic.DeveloperApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
-    <add type="umbraco.businesslogic.UsersApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
-    <add type="umbraco.businesslogic.MembersApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
-    <add type="umbraco.businesslogic.TranslationApplicationDefinition, businesslogic, Version=1.0.5820.25374, Culture=neutral, PublicKeyToken=null" />
+    <add type="Optimus.Umbraco.Trees.BundlingAndMinificationTree, Optimus, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null" />
   </baseType>
   <baseType type="umbraco.interfaces.ICacheRefresher" resolutionType="FindAllTypes">
     <add type="Umbraco.Web.Cache.ApplicationCacheRefresher, umbraco, Version=1.0.5820.25379, Culture=neutral, PublicKeyToken=null" />

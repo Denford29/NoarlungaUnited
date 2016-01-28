@@ -797,11 +797,15 @@
     <Content Include="Images\Bank-SA.png" />
     <Content Include="Images\Biscany.png" />
     <Content Include="Images\Budget-Garden-Care.png" />
+    <Content Include="Images\Coaches-Training.jpg" />
     <Content Include="Images\Default-Sponsor-Logo.jpeg" />
     <Content Include="Images\Default-Sponsor-Logo.png" />
     <Content Include="Images\facebook-image.jpg" />
+    <Content Include="Images\football-Federation-South-Australia.jpg" />
+    <Content Include="Images\Good-Life-Health-Clubs-Logo.jpg" />
     <Content Include="Images\Good-Life-Health-Clubs.jpg" />
     <Content Include="Images\Good-Life-Health-Clubs.png" />
+    <Content Include="Images\Good-Sports.png" />
     <Content Include="Images\Magain-2.png" />
     <Content Include="Images\Magain-Logo.png" />
     <Content Include="Images\Magain-Real-Estate.png" />
@@ -826,6 +830,9 @@
     <Content Include="Images\nusc-sheild.jpg" />
     <Content Include="Images\Soccer-Locker.png" />
     <Content Include="Images\SponsorsSlider.png" />
+    <Content Include="Images\STARCLUB-Logo.jpg" />
+    <Content Include="Images\starclub-logo.png" />
+    <Content Include="Images\StarClub.jpg" />
     <Content Include="Images\steve-mooney.jpg" />
     <Content Include="Images\tfp.png" />
     <Content Include="Index.html" />
@@ -852,6 +859,11 @@
     <Content Include="Media\1014\noarlunga-united-team-lineup-new.png" />
     <Content Include="Media\1015\steve-mooney.jpg" />
     <Content Include="Media\1016\sponsorsslider.png" />
+    <Content Include="Media\1017\coaches-training.jpg" />
+    <Content Include="Media\1018\starclub-logo.jpg" />
+    <Content Include="Media\1019\football-federation-south-australia.jpg" />
+    <Content Include="Media\1020\good-life-health-clubs-logo.jpg" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\EventCalendar\fullcalendar.min.js" />
     <Content Include="Scripts\EventCalendar\gcal.js" />
@@ -1069,6 +1081,7 @@
     <Content Include="Views\Partials\News\AllNewsArticles.cshtml" />
     <Content Include="Views\Partials\Contact\LocationMap.cshtml" />
     <Content Include="Views\Sitemap.cshtml" />
+    <Content Include="Views\Partials\Master\AccreditationsList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

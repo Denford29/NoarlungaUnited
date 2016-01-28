@@ -1,0 +1,67 @@
+﻿@using Archetype.Models
+@inherits UmbracoTemplatePage
+@{
+    var siteSetting = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "GlobalSettings");
+    if (siteSetting != null && siteSetting.Id > 0 && siteSetting.Descendants("SiteDetails").Any())
+    {
+        var siteDetailsPage = siteSetting.Descendants("SiteDetails").FirstOrDefault();
+        if (siteDetailsPage != null && siteDetailsPage.Id > 0)
+        {
+            if (siteDetailsPage.GetPropertyValue<ArchetypeModel>("accreditationsItems") != null)
+            {
+                var accreditationsArchetype = siteDetailsPage.GetPropertyValue<ArchetypeModel>("accreditationsItems");
+                if (accreditationsArchetype.Fieldsets.Any())
+                {
+                    var firstSection = accreditationsArchetype.First();
+                    if (!string.IsNullOrEmpty(firstSection.GetValue("logoImage")))
+                    {
+                        <section class="accreditations mb20 hidden-xs">
+                            <div class="container">
+                                @*<div class="row">
+                                    <h2 class="heading1 col-sm-12">
+                                        Accreditations
+                                    </h2>
+                                </div>*@
+                                <div class="row">
+                                    @foreach (var fieldset in accreditationsArchetype.Fieldsets)
+                                    {
+                                        var name = fieldset.GetValue("name");
+                                        var internalLink = fieldset.GetValue("internalLink");
+                                        var externalLink = fieldset.GetValue("externalLink");
+                                        var logoImageId = fieldset.GetValue("logoImage");
+                                        var mediaItem = Umbraco.TypedMedia(logoImageId);
+                                        if (mediaItem != null && mediaItem.Id > 0)
+                                        {
+                                            var accreditationLink = externalLink;
+                                            if (!string.IsNullOrWhiteSpace(internalLink))
+                                            {
+                                                var linkPage = Umbraco.TypedContent(internalLink);
+                                                if (linkPage != null && linkPage.Id > 0)
+                                                {
+                                                    accreditationLink = linkPage.Url;
+                                                }
+                                            }
+                                            var accreditationLogo = !string.IsNullOrEmpty(mediaItem.GetCropUrl("AccreditationLogo")) ? mediaItem.GetCropUrl("AccreditationLogo") : mediaItem.GetCropUrl(400, 250);
+                                            <div class="col-sm-3 text-center">
+                                                @if (!string.IsNullOrWhiteSpace(accreditationLink))
+                                                    {
+                                                    <a href="@accreditationLink" title="@name" target="_blank">
+                                                        <img src="@accreditationLogo" alt="@name" title="@name" />
+                                                    </a>
+                                                    }
+                                                else
+                                                    {
+                                                    <img src="@accreditationLogo" alt="@name" title="@name" />
+                                                    }
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </section>
+                    }
+                }
+            }
+        }
+    }
+}
