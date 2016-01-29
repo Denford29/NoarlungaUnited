@@ -1,10 +1,9 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@inherits UmbracoTemplatePage
 @{
     var homePage = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "HomePage");
     if (homePage != null && homePage.Id > 0 && homePage.Descendants("SponsorPage").Any())
         {
         var r = new Random();
-        //var sponsors = homePage.Descendants("SponsorPage").OrderBy(x => x.CreateDate).Take(6);
         var sponsors = homePage.Descendants("SponsorPage").OrderBy(x => r.Next()).Take(6);
             <!-- Our Clinet-->
         <section class="sponsors mt20 hidden-xs">
