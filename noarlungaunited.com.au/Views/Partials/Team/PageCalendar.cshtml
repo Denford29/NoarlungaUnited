@@ -1,0 +1,74 @@
+﻿@using System.Globalization
+@using EventCalendarBelle
+@inherits UmbracoTemplatePage
+@{
+    var homePage = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "HomePage");
+    if (Model.Content.HasProperty("teamCalendar") && Model.Content.HasValue("teamCalendar"))
+        {
+        var callId = int.Parse(Model.Content.GetPropertyValue<string>("teamCalendar"));
+
+        var teamCalendar = EventCalendarHelper.GetCalendar(callId);
+        if (teamCalendar != null && teamCalendar.Id > 0)
+            {
+            var eventDetailsPage = homePage.Descendants("EventDetailsPage").FirstOrDefault();
+            if (eventDetailsPage != null && eventDetailsPage.Id > 0)
+                {
+                var eventDetailsPageUrl = eventDetailsPage.Url;
+                <script type="text/javascript">
+                    var event_details_url = '@eventDetailsPageUrl';
+
+                    $(document).ready(function () {
+                        var csrfToken = $("input[name='__RequestVerificationToken']").val();
+                        $.get("/umbraco/EventCalendar/ECApi/GetCalendarSources/", { id: '@callId' }, function (data) {
+                            $.each(data, function (key, data) {
+                                data.headers = { "X-XSRF-Token": csrfToken };
+                            });
+                            $('#teamCalendar').fullCalendar({
+                                defaultView: '@teamCalendar.ViewMode',
+                                header: {
+                                    left: 'prev,next today',
+                                    center: 'title',
+                                    right: 'month,basicWeek,basicDay'
+                                },
+                                lang: '@CultureInfo.CurrentCulture.TwoLetterISOLanguageName.ToLower()',
+                                eventSources: data,
+                                eventClick: function (event) {
+                                    if (event.url) {
+                                        window.open(event.url);
+                                        return false;
+                                    } else {
+                                        if (event.type === 1) {
+                                            window.location.href = event_details_url + '?id=' + event.id + '&type=1&calendar=' + event.calendar;
+                                        } else {
+                                            window.location.href = event_details_url + '?id=' + event.id + '&type=0&calendar=' + event.calendar;
+                                        }
+                                        return false;
+                                    }
+                                },
+                                eventRender: function (event, element) {
+                                    if (event.end != null) {
+                                        element.qtip({
+                                            content: {
+                                                text: "<h2>" + event.title + "</h2><h5>Start: " + event.start.format('llll') + "</h5><h5>End: " + event.end.format('llll') + "</h5><div>" + event.description + "</div>",
+                                                title: event.title
+                                            },
+                                            style: "qtip-blue"
+                                        });
+                                    } else {
+                                        element.qtip({
+                                            content: {
+                                                text: "<h2>" + event.title + "</h2><h5>Start: " + event.start.format('llll') + "</h5><div>" + event.description + "</div>",
+                                                title: event.title
+                                            },
+                                            style: "qtip-blue"
+                                        });
+                                    }
+                                }
+                            });
+                        });
+                    });
+                </script>
+                }
+            }
+        }
+}

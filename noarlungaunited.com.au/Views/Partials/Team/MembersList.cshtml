@@ -41,7 +41,7 @@
                 <h3>
                     Coaches
                 </h3>
-                foreach (var rowCoaches in teamCoaches.InGroupsOf(3))
+                foreach (var rowCoaches in teamCoaches.InGroupsOf(4))
                     {
                     <div class="row mt20 mb20 doubleBorderTop doubleBorderBottom">
                         @foreach (var coach in rowCoaches)
@@ -51,13 +51,29 @@
                                 {
                                 name = coach.GetPropertyValue<string>("fullName");
                                 }
-                            <div class="col-sm-4 col-xs-12 mb20 text-center">
+                            <div class="col-sm-3 col-xs-12 mb20 text-center">
                                 <h4 class="heading3">
                                     @name
                                 </h4>
-                                <p>
-                                    <i class="fa fa-user fa-5x"></i>
-                                </p>
+
+                                @if (coach.HasProperty("profileImage") && coach.HasValue("profileImage"))
+                                    {
+                                    var mediaItem = Umbraco.TypedMedia(coach.GetPropertyValue("profileImage").ToString());
+                                    if (mediaItem != null && mediaItem.Id > 0)
+                                        {
+                                        var profileImage = !string.IsNullOrEmpty(mediaItem.GetCropUrl("ArticleThumb")) ? mediaItem.GetCropUrl("ArticleThumb") : mediaItem.GetCropUrl(250, 250);
+                                        <p>
+                                            <img src="@profileImage" alt="@coach.Name" title="@coach.Name" />
+                                        </p>
+                                        }
+                                    }
+                                else
+                                    {
+                                    <p>
+                                        <i class="fa fa-user fa-5x"></i>
+                                    </p>
+                                    }
+
                                 @if (coach.HasProperty("position") && coach.HasValue("position"))
                                     {
                                     <p>
@@ -78,7 +94,7 @@
                 <h3>
                     Players
                 </h3>
-                foreach (var rowPlayer in teamPlayers.InGroupsOf(3))
+                foreach (var rowPlayer in teamPlayers.InGroupsOf(4))
                     {
                     <div class="row mt20 mb20 doubleBorderTop doubleBorderBottom">
                         @foreach (var player in rowPlayer)
@@ -88,13 +104,29 @@
                                 {
                                 name = player.GetPropertyValue<string>("fullName");
                                 }
-                            <div class="col-sm-4 col-xs-12 mb20 text-center">
+                            <div class="col-sm-3 col-xs-12 mb20 text-center">
                                 <h4 class="heading3">
                                     @name
                                 </h4>
-                                <p>
-                                    <i class="fa fa-user fa-5x"></i>
-                                </p>
+
+                                @if (player.HasProperty("profileImage") && player.HasValue("profileImage"))
+                                    {
+                                    var mediaItem = Umbraco.TypedMedia(player.GetPropertyValue("profileImage").ToString());
+                                    if (mediaItem != null && mediaItem.Id > 0)
+                                        {
+                                        var profileImage = !string.IsNullOrEmpty(mediaItem.GetCropUrl("ArticleThumb")) ? mediaItem.GetCropUrl("ArticleThumb") : mediaItem.GetCropUrl(250, 250);
+                                        <p>
+                                            <img src="@profileImage" alt="@player.Name" title="@player.Name" />
+                                        </p>
+                                        }
+                                    }
+                                else
+                                    {
+                                    <p>
+                                        <i class="fa fa-user fa-5x"></i>
+                                    </p>
+                                    }
+
                                 @if (player.HasProperty("position") && player.HasValue("position"))
                                     {
                                     <p>

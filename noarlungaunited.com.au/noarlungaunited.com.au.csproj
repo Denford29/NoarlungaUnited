@@ -835,7 +835,6 @@
     <Content Include="Images\StarClub.jpg" />
     <Content Include="Images\steve-mooney.jpg" />
     <Content Include="Images\tfp.png" />
-    <Content Include="Index.html" />
     <Content Include="Media\1001\noarlunga-united-shield.png" />
     <Content Include="Media\1002\noarlunga-united-bulldogs.png" />
     <Content Include="Media\1003\magain-2.png" />
@@ -1082,6 +1081,7 @@
     <Content Include="Views\Partials\Contact\LocationMap.cshtml" />
     <Content Include="Views\Sitemap.cshtml" />
     <Content Include="Views\Partials\Master\AccreditationsList.cshtml" />
+    <Content Include="Views\Partials\Team\PageCalendar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

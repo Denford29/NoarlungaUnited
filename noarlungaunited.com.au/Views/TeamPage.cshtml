@@ -1,5 +1,9 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+﻿@using System.Globalization
+@using EventCalendarBelle
+@inherits UmbracoTemplatePage
 @section headerCss{
+    <link href="/Css/EventCalendar/fullcalendar.css" rel="stylesheet">
+    <link href="/Css/jquery.qtip.min.css" rel="stylesheet">
 }
 
 @{
@@ -33,6 +37,30 @@
 
                 @Html.Partial("Team/MembersList")
 
+                @if (Model.Content.HasProperty("teamCalendar") && Model.Content.HasValue("teamCalendar"))
+                    {
+                    var homePage = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "HomePage");
+                    var callId = int.Parse(Model.Content.GetPropertyValue<string>("teamCalendar"));
+
+                    var teamCalendar = EventCalendarHelper.GetCalendar(callId);
+                    if (teamCalendar != null && teamCalendar.Id > 0)
+                        {
+                        var eventDetailsPage = homePage.Descendants("EventDetailsPage").FirstOrDefault();
+                        if (eventDetailsPage != null && eventDetailsPage.Id > 0)
+                            {
+                            <div class="mt20 mb20">
+                                <h2 class="heading1">
+                                    Teams Calendar
+                                </h2>
+                                <div class="mb20">
+                                    @Html.AntiForgeryToken()
+                                    <div id="teamCalendar"></div>
+                                </div>
+                            </div>
+                            }
+                        }
+                    }
+
             </div>
 
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt40column">
@@ -44,4 +72,12 @@
 }
 
 @section footerScripts{
+    <script type="text/javascript" src="/Scripts/EventCalendar/moment.min.js"></script>
+    <script type="text/javascript" src="/Scripts/EventCalendar/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="/Scripts/EventCalendar/gcal.js"></script>
+    <script type="text/javascript" src="/Scripts/EventCalendar/lang-all.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.qtip.min.js"></script>
+
+    @Html.Partial("Team/PageCalendar")
+
 }
