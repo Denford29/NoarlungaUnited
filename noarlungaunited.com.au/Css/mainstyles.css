@@ -402,7 +402,6 @@ ul.mainmenucontain > li > div ul > li > a {
 /* ------------ Accreditations ------------ */
 
 .accreditations {
-    /*background: none repeat scroll 0 0 #83d4fa;*/
     background: none repeat scroll 0 0 #f2f2f2;
     padding: 10px 0;
     border-top: 4px double #CCCCCC;
@@ -577,6 +576,16 @@ ul.latesttestimonials .imageleft {
     .sponsors h2.heading1 {
         margin: 0 0 10px 0;
     }
+
+/* ------------ Events ------------ */
+
+.calendarKey {
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px 0;
+    text-align: center;
+}
 
 /* ------------ Footer ------------ */
 

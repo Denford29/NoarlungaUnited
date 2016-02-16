@@ -1,0 +1,10 @@
+﻿ 2016-02-08 21:00:16,897 [P10124/D6/T127] INFO  Umbraco.Core.UmbracoApplicationBase - Application shutdown. Details: HostingEnvironment
+
+_shutDownMessage=HostingEnvironment initiated shutdown
+HostingEnvironment caused shutdown
+
+_shutDownStack=   at System.Environment.GetStackTrace(Exception e, Boolean needFileInfo)
+   at System.Environment.get_StackTrace()
+   at System.Web.Hosting.HostingEnvironment.InitiateShutdownInternal()
+   at System.Web.Hosting.HostingEnvironment.InitiateShutdownWithoutDemand()
+   at System.Web.Hosting.PipelineRuntime.StopProcessing()

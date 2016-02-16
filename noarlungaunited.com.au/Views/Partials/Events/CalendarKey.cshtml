@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using EventCalendar.Core.Models
+@using EventCalendar.Core.Services
+@using EventCalendarBelle
+@{
+    var siteCalendars = CalendarService.GetAllCalendar().ToList();
+    if (siteCalendars.Any())
+        {
+        <div class="titles">
+            <h3>
+                Calendar key
+            </h3>
+            @foreach (var groupCalendars in siteCalendars.InGroupsOf(4))
+                {
+                <div class="row">
+                    @foreach (var calendar in groupCalendars)
+                        {
+                        <div class="col-sm-3">
+                            <p class="calendarKey" style="background-color: @calendar.Color; color: @calendar.TextColor">
+                                @calendar.Calendarname
+                            </p>
+                        </div>
+                        }
+                </div>
+                }
+        </div>
+        }
+}

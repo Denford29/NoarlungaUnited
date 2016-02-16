@@ -1082,6 +1082,7 @@
     <Content Include="Views\Sitemap.cshtml" />
     <Content Include="Views\Partials\Master\AccreditationsList.cshtml" />
     <Content Include="Views\Partials\Team\PageCalendar.cshtml" />
+    <Content Include="Views\Partials\Events\CalendarKey.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
