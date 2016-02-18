@@ -1,10 +1,10 @@
 ﻿@using System.Globalization
 @using EventCalendarBelle
-@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@inherits UmbracoTemplatePage
+
 @section headerCss{
-    <link href="/Css/EventCalendar/fullcalendar.css" rel="stylesheet">
-    <link href="/Css/jquery.qtip.min.css" rel="stylesheet">
 }
+
 @{
     Layout = "SiteMaster.cshtml";
     int id = 0;
@@ -67,12 +67,6 @@
 }
 
 @section footerScripts{
-
-    <script type="text/javascript" src="/Scripts/EventCalendar/moment.min.js"></script>
-    <script type="text/javascript" src="/Scripts/EventCalendar/fullcalendar.min.js"></script>
-    <script type="text/javascript" src="/Scripts/EventCalendar/gcal.js"></script>
-    <script type="text/javascript" src="/Scripts/EventCalendar/lang-all.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery.qtip.min.js"></script>
 
     <script type="text/javascript">
         var event_details_url = '@eventDetailsPageUrl';

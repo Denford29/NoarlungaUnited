@@ -468,7 +468,24 @@ p.metadetails {
     font-weight: 300;
 }
 
+/* ------------ Page Gallery ------------ */
+
+.sliderOptions {
+    padding: 20px 0;
+}
+
+.sliderImages {
+   padding: 20px 0; 
+}
+.sliderImages a {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+ 
 /* ------------ Latest News ------------ */
+
 .blogdetail {
     border-top: 4px double #e7e7e7;
 }

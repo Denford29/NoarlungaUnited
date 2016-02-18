@@ -738,6 +738,7 @@
     <Content Include="Config\trees.config" />
     <Content Include="Config\umbracoSettings.config" />
     <Content Include="Config\UrlRewriting.config" />
+    <Content Include="Css\blueimp-gallery.min.css" />
     <Content Include="Css\bootstrap-theme.css" />
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\EventCalendar\bootstrap-responsive.min.css" />
@@ -791,6 +792,31 @@
     <Content Include="Css\font-awesome.css" />
     <Content Include="Css\jquery.qtip.min.css" />
     <Content Include="Css\mainstyles.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="FavIcons\android-icon-144x144.png" />
+    <Content Include="FavIcons\android-icon-192x192.png" />
+    <Content Include="FavIcons\android-icon-36x36.png" />
+    <Content Include="FavIcons\android-icon-48x48.png" />
+    <Content Include="FavIcons\android-icon-72x72.png" />
+    <Content Include="FavIcons\android-icon-96x96.png" />
+    <Content Include="FavIcons\apple-icon-114x114.png" />
+    <Content Include="FavIcons\apple-icon-120x120.png" />
+    <Content Include="FavIcons\apple-icon-144x144.png" />
+    <Content Include="FavIcons\apple-icon-152x152.png" />
+    <Content Include="FavIcons\apple-icon-180x180.png" />
+    <Content Include="FavIcons\apple-icon-57x57.png" />
+    <Content Include="FavIcons\apple-icon-60x60.png" />
+    <Content Include="FavIcons\apple-icon-72x72.png" />
+    <Content Include="FavIcons\apple-icon-76x76.png" />
+    <Content Include="FavIcons\apple-icon-precomposed.png" />
+    <Content Include="FavIcons\apple-icon.png" />
+    <Content Include="FavIcons\favicon-16x16.png" />
+    <Content Include="FavIcons\favicon-32x32.png" />
+    <Content Include="FavIcons\favicon-96x96.png" />
+    <Content Include="FavIcons\ms-icon-144x144.png" />
+    <Content Include="FavIcons\ms-icon-150x150.png" />
+    <Content Include="FavIcons\ms-icon-310x310.png" />
+    <Content Include="FavIcons\ms-icon-70x70.png" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="google580741c516edc2bf.html" />
@@ -863,6 +889,7 @@
     <Content Include="Media\1019\football-federation-south-australia.jpg" />
     <Content Include="Media\1020\good-life-health-clubs-logo.jpg" />
     <Content Include="robots.txt" />
+    <Content Include="Scripts\blueimp-gallery.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\EventCalendar\fullcalendar.min.js" />
     <Content Include="Scripts\EventCalendar\gcal.js" />
@@ -1083,6 +1110,7 @@
     <Content Include="Views\Partials\Master\AccreditationsList.cshtml" />
     <Content Include="Views\Partials\Team\PageCalendar.cshtml" />
     <Content Include="Views\Partials\Events\CalendarKey.cshtml" />
+    <Content Include="Views\Partials\Master\PageGallery.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

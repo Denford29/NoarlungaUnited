@@ -4,17 +4,18 @@
     var siteScripts = {
         onReady: function () {
             this.mainMenu();
+            this.gallerySlider();
         },
 
         //define what each function does
         mainMenu: function () {
             // Navigation Menu
-            $('ul.mainmenucontain li').hover(
+            $("ul.mainmenucontain li").hover(
                 function () {
-                    $(this).children('div').css('display', 'table')
+                    $(this).children("div").css("display", "table");
                 },
                 function () {
-                    $(this).children('div').css('display', 'none')
+                    $(this).children("div").css("display", "none");
                 }
             );
 
@@ -42,6 +43,24 @@
                 window.location = $(this).find("option:selected").val();
             });
 
+        },
+
+        //define what each function does
+        gallerySlider: function () {
+            $("#borderless-checkbox").on("change", function () {
+                var borderless = $(this).is(":checked");
+                $("#blueimp-gallery").data("useBootstrapModal", !borderless);
+                $("#blueimp-gallery").toggleClass("blueimp-gallery-controls", borderless);
+            });
+
+            $("#fullscreen-checkbox").on("change", function () {
+                $("#blueimp-gallery").data("fullScreen", $(this).is(":checked"));
+            });
+
+            $("#image-gallery-button").on("click", function (event) {
+                event.preventDefault();
+                blueimp.Gallery($("#links a"), $("#blueimp-gallery").data());
+            });
         }
 
     };

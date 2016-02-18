@@ -102,15 +102,6 @@
                     <ul>
                         <li>
                             <div class="newstitle">
-                                @if (newsArticle.HasProperty("headingImage") && newsArticle.HasValue("headingImage"))
-                                    {
-                                    var umbracoImage = Umbraco.TypedMedia(newsArticle.GetPropertyValue<Int32>("headingImage"));
-                                    if (umbracoImage != null && umbracoImage.Id > 0)
-                                        {
-                                        var imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("listingThumb")) ? umbracoImage.GetCropUrl("listingThumb") : umbracoImage.GetCropUrl(50, 50);
-                                        <img class="imageleft" src="@imageSrc" alt="@articleTitle" title="@articleTitle">
-                                        }
-                                    }
                                 <h4>
                                     <a href="@newsArticle.Url" title="@articleTitle">
                                         @articleTitle

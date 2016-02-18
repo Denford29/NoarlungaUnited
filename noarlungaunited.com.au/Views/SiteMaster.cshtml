@@ -4,14 +4,13 @@
 
     @Html.Partial("Master/HeaderContent")
 
-    <!-- Bootstrap -->
-    <link href="/Css/bootstrap.css" rel="stylesheet">
-    <link href="/Css/mainstyles.css" rel="stylesheet">
-    <link href="/Css/font-awesome.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/favicon.ico" />
 
-    <script type="text/javascript" src="/Scripts/jquery.min.1.11.3.js"></script>
+    @Styles.Render("~/bundles/sitecss")
 
     @RenderSection("headerCss", false)
+
+    @Scripts.Render("~/bundles/sitescripts")
 
     <!--[if lt IE 9]>
         <script src="/Scripts/html5shiv.min.js"></script>
@@ -34,10 +33,6 @@
     @Html.Partial("Master/FooterSponsors")
 
     @Html.Partial("Master/FooterContent")
-
-    @*<script type="text/javascript" src="/Scripts/jquery.min.1.11.3.js"></script>*@
-    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/Scripts/mainScripts.js"></script>
 
     @RenderSection("footerScripts", false)
 
