@@ -1111,6 +1111,7 @@
     <Content Include="Views\Partials\Team\PageCalendar.cshtml" />
     <Content Include="Views\Partials\Events\CalendarKey.cshtml" />
     <Content Include="Views\Partials\Master\PageGallery.cshtml" />
+    <Content Include="Views\Partials\Master\PageGallaries.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

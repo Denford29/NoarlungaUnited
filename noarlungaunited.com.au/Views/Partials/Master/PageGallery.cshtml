@@ -36,7 +36,7 @@
                             {
                             var imageThumbnail = !string.IsNullOrEmpty(image.GetCropUrl("Thumbnail")) ? image.GetCropUrl("Thumbnail") : image.GetCropUrl(100, 100);
                             var sliderImage = image.GetCropUrl();
-                            <a href="@sliderImage" title="@pageAlbum.Name Images" data-gallery class="col-md-1">
+                            <a href="@sliderImage" title="@pageAlbum.Name Images" data-gallery class="col-md-2">
                                 <img src="@imageThumbnail" alt="@pageAlbum.Name Images">
                             </a>
                             }

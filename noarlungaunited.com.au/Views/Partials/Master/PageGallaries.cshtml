@@ -1,0 +1,149 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    if (Model.Content.HasProperty("pageAlbums") && Model.Content.HasValue("pageAlbums"))
+        {
+        var pageAlbumIds = Model.Content.GetPropertyValue("pageAlbums").ToString();
+        if (!string.IsNullOrWhiteSpace(pageAlbumIds))
+            {
+            if (pageAlbumIds.Contains(","))
+                {
+                var albumIdsList = pageAlbumIds.Split(',');
+                var counter = 0;
+                <div class="mt20 mb20">
+
+                    <h2 class="heading1 doubleBorderBottom">
+                        @Model.Content.Name Image Galleries
+                    </h2>
+
+                    <div class="row hidden-sm hidden-xs sliderImages">
+
+                        @foreach (var albumId in albumIdsList)
+                            {
+                            counter++;
+                            var listAlbum = Umbraco.TypedMedia(albumId);
+                            if (listAlbum != null && listAlbum.Id > 0 && listAlbum.ContentType.Alias == "Folder" && listAlbum.Descendants("Image").Any())
+                                {
+                                var albumImages = listAlbum.Descendants("Image").ToList();
+                                var firstImage = listAlbum.Descendants("Image").FirstOrDefault();
+                                var imageAlbumUrl = !string.IsNullOrEmpty(firstImage.GetCropUrl("galleryImage")) ? firstImage.GetCropUrl("galleryImage") : firstImage.GetCropUrl(500, 350);
+                                var albumName = listAlbum.Name;
+
+                                var galleryId = "image" + counter;
+                                var galleryBtnId = "gallery" + counter;
+                                <div class="col-md-3 text-center" id="@galleryId">
+                                    <a href="@imageAlbumUrl" title="@albumName Images" data-gallery>
+                                        <img src="@imageAlbumUrl" alt="@albumName Images">
+                                    </a>
+                                    @foreach (var image in albumImages)
+                                        {
+                                        var sliderImage = image.GetCropUrl();
+                                        <a href="@sliderImage" title="@albumName Images" data-gallery class="hidden"></a>
+                                        }
+                                    <h4>
+                                        @albumName Gallery
+                                    </h4>
+                                    <button id="@galleryBtnId" type="button" class="btn btn-primary btn-small">
+                                        View Gallery
+                                        <i class="glyphicon glyphicon-picture"></i>
+                                    </button>
+                                </div>
+                                <script>
+                                    $("#@galleryBtnId").on("click", function (event) {
+                                        event.preventDefault();
+                                        blueimp.Gallery($("#@galleryId a"), $("#blueimp-gallery").data());
+                                    });
+                                </script>
+                                }
+                            }
+                    </div>
+                </div>
+                }
+            else
+                {
+                var pageAlbum = Umbraco.TypedMedia(pageAlbumIds);
+                if (pageAlbum != null && pageAlbum.Id > 0 && pageAlbum.ContentType.Alias == "Folder" && pageAlbum.Descendants("Image").Any())
+                    {
+                    var albumImages = pageAlbum.Descendants("Image").ToList();
+                    var firstImage = pageAlbum.Descendants("Image").FirstOrDefault();
+                    var imageAlbumUrl = !string.IsNullOrEmpty(firstImage.GetCropUrl("galleryImage")) ? firstImage.GetCropUrl("galleryImage") : firstImage.GetCropUrl(500, 350);
+
+                    <div class="mt20 mb20 doubleBorderTop doubleBorderBottom">
+
+                        <h2 class="heading1">
+                            @Model.Content.Name Gallery
+                        </h2>
+
+                        <div class="row sliderOptions hidden-sm hidden-xs mt20 mb20 doubleBorderTop">
+                            <button id="image-gallery-button" type="button" class="btn btn-primary btn-lg col-md-3">
+                                Launch Image Gallery
+                                <i class="glyphicon glyphicon-picture"></i>
+                            </button>
+                            <label class="btn btn-primary btn-lg col-md-3 col-lg-offset-1">
+                                <input id="borderless-checkbox" type="checkbox"> Borderless
+                                <i class="glyphicon glyphicon-leaf"></i>
+                            </label>
+                            <label class="btn btn-primary btn-lg col-md-3 col-lg-offset-1">
+                                <input id="fullscreen-checkbox" type="checkbox"> Fullscreen
+                                <i class="glyphicon glyphicon-fullscreen"></i>
+                            </label>
+                        </div>
+
+                        <div id="links" class="row hidden-sm hidden-xs sliderImages">
+                            @foreach (var image in albumImages.Take(24))
+                                {
+                                var imageThumbnail = !string.IsNullOrEmpty(image.GetCropUrl("Thumbnail")) ? image.GetCropUrl("Thumbnail") : image.GetCropUrl(100, 100);
+                                var sliderImage = image.GetCropUrl();
+                            <a href="@sliderImage" title="@pageAlbum.Name Images" data-gallery class="col-md-2">
+                                <img src="@imageThumbnail" alt="@pageAlbum.Name Images">
+                            </a>
+                                }
+                        </div>
+
+                        <div id="mobileLinks" class="row visible-sm visible-xs mobileSlider">
+                            <a href="@imageAlbumUrl" title="@pageAlbum.Name Images" data-gallery class="col-xs-10 col-xs-offset-1">
+                                <img src="@imageAlbumUrl" alt="@pageAlbum.Name Images" class="img-responsive img-border">
+                            </a>
+                            @foreach (var image in albumImages)
+                                {
+                                var sliderImage = image.GetCropUrl();
+                            <a href="@sliderImage" title="@pageAlbum.Name Images" data-gallery class="hidden"></a>
+                                }
+                        </div>
+
+                    </div>
+                    }
+                }
+            }
+        }
+}
+
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    *<ol class="indicator"></ol>*
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

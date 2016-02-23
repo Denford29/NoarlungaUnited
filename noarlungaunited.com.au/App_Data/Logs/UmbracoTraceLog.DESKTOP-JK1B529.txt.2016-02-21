@@ -1,0 +1,148 @@
+﻿ 2016-02-21 20:53:05,020 [P18456/D2/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco 7.3.4 application starting on DESKTOP-JK1B529
+ 2016-02-21 20:53:05,117 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Determining hash of code files on disk
+ 2016-02-21 20:53:05,165 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Hash determined (took 45ms)
+ 2016-02-21 20:53:05,361 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+ 2016-02-21 20:53:05,380 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 0 (took 18ms)
+ 2016-02-21 20:53:05,454 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+ 2016-02-21 20:53:05,458 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 0 (took 3ms)
+ 2016-02-21 20:53:05,458 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyValueConverter
+ 2016-02-21 20:53:05,600 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyValueConverter, found 0 (took 142ms)
+ 2016-02-21 20:53:05,620 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+ 2016-02-21 20:53:05,623 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 0 (took 2ms)
+ 2016-02-21 20:53:05,624 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.WebApi.UmbracoApiController
+ 2016-02-21 20:53:05,632 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.WebApi.UmbracoApiController, found 0 (took 8ms)
+ 2016-02-21 20:53:05,690 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+ 2016-02-21 20:53:05,692 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 0 (took 1ms)
+ 2016-02-21 20:53:05,692 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+ 2016-02-21 20:53:05,693 [P18456/D2/T1] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 0 (took 1ms)
+ 2016-02-21 20:53:07,023 [P18456/D2/T1] INFO  Umbraco.Core.DatabaseContext - CanConnect = True
+ 2016-02-21 20:53:07,278 [P18456/D2/T1] INFO  Umbraco.Core.DatabaseContext - CanConnect = True
+ 2016-02-21 20:53:07,278 [P18456/D2/T1] INFO  Umbraco.Core.DatabaseContext - CanConnect = True
+ 2016-02-21 20:53:07,351 [P18456/D2/T1] INFO  Umbraco.Web.Cache.CacheRefresherEventHandler - Initializing Umbraco internal event handlers for cache refreshing
+ 2016-02-21 20:53:07,379 [P18456/D2/T1] INFO  Umbraco.Web.Search.ExamineEvents - Initializing Examine and binding to business logic events
+ 2016-02-21 20:53:07,499 [P18456/D2/T1] INFO  Umbraco.Web.Search.ExamineEvents - Adding examine event handlers for index providers: 3
+ 2016-02-21 20:53:08,079 [P18456/D2/T1] INFO  Umbraco.Core.CoreBootManager - Umbraco application startup complete (took 3172ms)
+ 2016-02-21 20:53:09,191 [P18456/D2/T8] INFO  Umbraco.Core.Sync.ApplicationUrlHelper - ApplicationUrl: http://local.noarlungaunited.com.au:80/umbraco (UmbracoModule request)
+ 2016-02-21 20:53:15,538 [P18456/D2/T11] INFO  umbraco.content - Load Xml from file...
+ 2016-02-21 20:53:15,551 [P18456/D2/T11] INFO  umbraco.content - Loaded Xml from file.
+ 2016-02-21 20:53:16,989 [P18456/D2/T13] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.PropertyEditors.IParameterEditor
+ 2016-02-21 20:53:16,991 [P18456/D2/T13] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.PropertyEditors.IParameterEditor, found 0 (took 2ms)
+ 2016-02-21 20:54:11,586 [P18456/D2/T13] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Core.Persistence.Mappers.BaseMapper
+ 2016-02-21 20:54:11,587 [P18456/D2/T13] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Core.Persistence.Mappers.BaseMapper, found 0 (took 1ms)
+ 2016-02-21 20:54:11,919 [P18456/D2/T13] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: Login attempt succeeded for username Denford from IP address 127.0.0.1
+ 2016-02-21 20:54:11,922 [P18456/D2/T13] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: User: Denford logged in from IP address 127.0.0.1
+ 2016-02-21 20:54:12,273 [P18456/D2/T13] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.Trees.TreeController
+ 2016-02-21 20:54:12,275 [P18456/D2/T13] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.Trees.TreeController, found 0 (took 1ms)
+ 2016-02-21 20:54:12,576 [P18456/D2/T13] INFO  Umbraco.Core.PluginManager - Starting resolution types of umbraco.interfaces.IApplication
+ 2016-02-21 20:54:12,579 [P18456/D2/T13] INFO  Umbraco.Core.PluginManager - Completed resolution of types of umbraco.interfaces.IApplication, found 0 (took 2ms)
+ 2016-02-21 20:54:12,909 [P18456/D2/T14] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.Trees.TreeController
+ 2016-02-21 20:54:12,909 [P18456/D2/T14] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.Trees.TreeController, found 0 (took 0ms)
+ 2016-02-21 20:54:12,915 [P18456/D2/T14] INFO  Umbraco.Core.PluginManager - Starting resolution types of umbraco.interfaces.ITree
+ 2016-02-21 20:54:12,917 [P18456/D2/T14] INFO  Umbraco.Core.PluginManager - Completed resolution of types of umbraco.interfaces.ITree, found 0 (took 2ms)
+ 2016-02-21 20:54:13,027 [P18456/D2/T13] INFO  Umbraco.Core.PluginManager - Starting resolution types of umbraco.interfaces.ITree
+ 2016-02-21 20:54:13,119 [P18456/D2/T13] INFO  Umbraco.Core.PluginManager - Completed resolution of types of umbraco.interfaces.ITree, found 0 (took 91ms)
+ 2016-02-21 20:54:14,571 [P18456/D2/T8] INFO  umbraco.BusinessLogic.Log - Log scrubbed.  Removed all items older than 2016-02-20 20:54:14
+ 2016-02-21 20:56:09,730 [P18456/D2/T13] WARN  Umbraco.Web.Models.Mapping.PreValueDisplayResolver - Could not find persisted pre-value for field startNode
+ 2016-02-21 20:56:09,730 [P18456/D2/T13] WARN  Umbraco.Web.Models.Mapping.PreValueDisplayResolver - Could not find persisted pre-value for field filter
+ 2016-02-21 20:56:09,730 [P18456/D2/T13] WARN  Umbraco.Web.Models.Mapping.PreValueDisplayResolver - Could not find persisted pre-value for field minNumber
+ 2016-02-21 20:56:09,730 [P18456/D2/T13] WARN  Umbraco.Web.Models.Mapping.PreValueDisplayResolver - Could not find persisted pre-value for field maxNumber
+ 2016-02-21 20:58:39,092 [P18456/D2/T14] INFO  Umbraco.Core.PluginManager - Starting resolution types of umbraco.interfaces.ICacheRefresher
+ 2016-02-21 20:58:39,095 [P18456/D2/T14] INFO  Umbraco.Core.PluginManager - Completed resolution of types of umbraco.interfaces.ICacheRefresher, found 0 (took 3ms)
+ 2016-02-21 21:24:45,558 [P18456/D2/T101] WARN  Umbraco.Web.UmbracoModule - Status code is 404 yet TrySkipIisCustomErrors is false - IIS will take over.
+ 2016-02-21 21:25:11,525 [P18456/D2/T101] WARN  Umbraco.Web.UmbracoModule - Status code is 404 yet TrySkipIisCustomErrors is false - IIS will take over.
+ 2016-02-21 21:40:34,308 [P18456/D2/T147] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: Login attempt succeeded for username Denford from IP address 127.0.0.1
+ 2016-02-21 21:40:34,308 [P18456/D2/T147] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: User: Denford logged in from IP address 127.0.0.1
+ 2016-02-21 21:43:11,207 [P18456/D2/T151] ERROR Umbraco.Core.Persistence.UmbracoDatabase - Database exception occurred
+System.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_cmsPropertyData_cmsPropertyType_id". The conflict occurred in database "noarlungaunited.com.au", table "dbo.cmsPropertyType", column 'id'.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClassa.<ExecuteScalarWithRetry>b__9()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.Database.Insert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco)
+ClientConnectionId:6131cd2a-054f-4a2c-813b-40c50586b5d7
+Error Number:547,State:0,Class:16
+ 2016-02-21 21:43:11,213 [P18456/D2/T151] ERROR Umbraco.Core.Services.ContentService - An error occurred executing RePublishAll
+System.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_cmsPropertyData_cmsPropertyType_id". The conflict occurred in database "noarlungaunited.com.au", table "dbo.cmsPropertyType", column 'id'.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at Umbraco.Core.Persistence.PetaPocoCommandExtensions.<>c__DisplayClassa.<ExecuteScalarWithRetry>b__9()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.Database.Insert(String tableName, String primaryKeyName, Boolean autoIncrement, Object poco)
+   at Umbraco.Core.Persistence.Database.Insert(Object poco)
+   at Umbraco.Core.Persistence.Repositories.VersionableRepositoryBase`2.GetPropertyCollection(Sql docSql, IEnumerable`1 documentDefs)
+   at Umbraco.Core.Persistence.Repositories.ContentRepository.ProcessQuery(Sql sql)
+   at Umbraco.Core.Persistence.Repositories.VersionableRepositoryBase`2.GetPagedResultsByQuery[TDto,TContentBase](IQuery`1 query, Int64 pageIndex, Int32 pageSize, Int64& totalRecords, Tuple`2 nodeIdSelect, Func`2 processQuery, String orderBy, Direction orderDirection, Func`1 defaultFilter)
+   at Umbraco.Core.Persistence.Repositories.ContentRepository.GetPagedResultsByQuery(IQuery`1 query, Int64 pageIndex, Int32 pageSize, Int64& totalRecords, String orderBy, Direction orderDirection, String filter)
+   at Umbraco.Core.Persistence.Repositories.ContentRepository.RebuildXmlStructuresProcessQuery(Func`2 serializer, IQuery`1 query, Transaction tr, Int32 pageSize)
+   at Umbraco.Core.Persistence.Repositories.ContentRepository.RebuildXmlStructures(Func`2 serializer, Int32 groupSize, IEnumerable`1 contentTypeIds)
+   at Umbraco.Core.Services.ContentService.RebuildXmlStructures(Int32[] contentTypeIds)
+   at Umbraco.Core.Services.ContentService.RePublishAll(Int32[] contentTypeIds)
+ClientConnectionId:6131cd2a-054f-4a2c-813b-40c50586b5d7
+Error Number:547,State:0,Class:16
+ 2016-02-21 21:43:11,402 [P18456/D2/T151] INFO  umbraco.content - Loading content from database...
+ 2016-02-21 21:43:15,573 [P18456/D2/T12] INFO  umbraco.content - Save Xml to file...
+ 2016-02-21 21:43:15,607 [P18456/D2/T161] INFO  umbraco.content - Saved Xml to file.
+ 2016-02-21 21:45:06,809 [P18456/D2/T165] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Venue Hire' with Id '2149' has been published.
+ 2016-02-21 21:45:11,137 [P18456/D2/T159] INFO  umbraco.content - Save Xml to file...
+ 2016-02-21 21:45:11,158 [P18456/D2/T159] INFO  umbraco.content - Saved Xml to file.
+ 2016-02-21 21:45:32,576 [P18456/D2/T165] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Venue Hire' with Id '2149' has been published.
+ 2016-02-21 21:45:36,691 [P18456/D2/T159] INFO  umbraco.content - Save Xml to file...
+ 2016-02-21 21:45:36,702 [P18456/D2/T162] INFO  umbraco.content - Saved Xml to file.
+ 2016-02-21 21:46:30,141 [P18456/D2/T165] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Venue Hire' with Id '2149' has been published.
+ 2016-02-21 21:46:34,248 [P18456/D2/T159] INFO  umbraco.content - Save Xml to file...
+ 2016-02-21 21:46:34,265 [P18456/D2/T155] INFO  umbraco.content - Saved Xml to file.
+ 2016-02-21 21:46:47,224 [P18456/D2/T134] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Venue Hire' with Id '2149' has been published.
+ 2016-02-21 21:46:51,327 [P18456/D2/T134] INFO  umbraco.content - Save Xml to file...
+ 2016-02-21 21:46:51,340 [P18456/D2/T158] INFO  umbraco.content - Saved Xml to file.
+ 2016-02-21 21:53:24,797 [P18456/D2/T130] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.Trees.TreeController
+ 2016-02-21 21:53:24,797 [P18456/D2/T130] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.Trees.TreeController, found 0 (took 0ms)
+ 2016-02-21 21:54:37,355 [P18456/D2/T127] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Seniors' with Id '1084' has been published.
+ 2016-02-21 21:54:41,528 [P18456/D2/T159] INFO  umbraco.content - Save Xml to file...
+ 2016-02-21 21:54:41,538 [P18456/D2/T126] INFO  umbraco.content - Saved Xml to file.
+ 2016-02-21 21:54:47,299 [P18456/D2/T127] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Seniors' with Id '1084' has been published.
+ 2016-02-21 21:54:51,358 [P18456/D2/T159] INFO  umbraco.content - Save Xml to file...
+ 2016-02-21 21:54:51,392 [P18456/D2/T121] INFO  umbraco.content - Saved Xml to file.
+ 2016-02-21 21:55:21,676 [P18456/D2/T128] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Amateur' with Id '1085' has been published.
+ 2016-02-21 21:55:25,727 [P18456/D2/T159] INFO  umbraco.content - Save Xml to file...
+ 2016-02-21 21:55:25,751 [P18456/D2/T112] INFO  umbraco.content - Saved Xml to file.
+ 2016-02-21 21:56:35,996 [P18456/D2/T114] INFO  Umbraco.Core.Publishing.PublishingStrategy - Content 'Amateur' with Id '1085' has been published.
+ 2016-02-21 21:56:40,169 [P18456/D2/T114] INFO  umbraco.content - Save Xml to file...
+ 2016-02-21 21:56:40,189 [P18456/D2/T111] INFO  umbraco.content - Saved Xml to file.
+ 2016-02-21 22:02:26,634 [P18456/D2/T105] ERROR Umbraco.Core.UmbracoApplicationBase - An unhandled exception occurred
+System.Web.HttpUnhandledException (0x80004005): Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at Umbraco.Web.UI.Umbraco.Settings.Views.EditView.OnLoad(EventArgs e)
+   at System.Web.UI.Control.LoadRecursive()
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.HandleError(Exception e)
+   at System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+   at System.Web.UI.Page.ProcessRequest()
+   at System.Web.UI.Page.ProcessRequest(HttpContext context)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ 2016-02-21 22:10:58,779 [P18456/D2/T163] WARN  Umbraco.Web.UmbracoModule - Status code is 404 yet TrySkipIisCustomErrors is false - IIS will take over.
+ 2016-02-21 22:10:58,832 [P18456/D2/T87] WARN  Umbraco.Web.UmbracoModule - Status code is 404 yet TrySkipIisCustomErrors is false - IIS will take over.
+ 2016-02-21 22:11:11,556 [P18456/D2/T84] WARN  Umbraco.Web.UmbracoModule - Status code is 404 yet TrySkipIisCustomErrors is false - IIS will take over.
+ 2016-02-21 22:18:13,563 [P18456/D2/T78] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: Login attempt succeeded for username Denford from IP address 127.0.0.1
+ 2016-02-21 22:18:13,563 [P18456/D2/T78] INFO  Umbraco.Core.Security.BackOfficeSignInManager - Event Id: 0, state: User: Denford logged in from IP address 127.0.0.1
+ 2016-02-21 22:18:13,664 [P18456/D2/T78] INFO  Umbraco.Core.PluginManager - Starting resolution types of Umbraco.Web.Trees.TreeController
+ 2016-02-21 22:18:13,664 [P18456/D2/T78] INFO  Umbraco.Core.PluginManager - Completed resolution of types of Umbraco.Web.Trees.TreeController, found 0 (took 0ms)
+ 2016-02-21 22:49:04,416 [P18456/D2/T23] WARN  Umbraco.Web.UmbracoModule - Status code is 404 yet TrySkipIisCustomErrors is false - IIS will take over.

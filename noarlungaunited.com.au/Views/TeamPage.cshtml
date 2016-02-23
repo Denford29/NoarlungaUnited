@@ -15,28 +15,37 @@
         @Html.Partial("Master/PageHeading")
 
         <div class="row mt20">
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 mt40column">
-                @if (Model.Content.HasProperty("headingImage") && Model.Content.HasValue("headingImage"))
-                    {
-                    var umbracoImage = Umbraco.TypedMedia(Model.Content.GetPropertyValue<Int32>("headingImage"));
-                    if (umbracoImage != null && umbracoImage.Id > 0)
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mt40column">
+                @*@if (Model.Content.HasProperty("headingImage") && Model.Content.HasValue("headingImage"))
                         {
-                        var imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("pageHeading")) ? umbracoImage.GetCropUrl("pageHeading") : umbracoImage.GetCropUrl(1000, 300);
-                        <div class="mb20">
-                            <img alt="@Model.Content.Name" src="@imageSrc">
-                        </div>
+                        var umbracoImage = Umbraco.TypedMedia(Model.Content.GetPropertyValue<Int32>("headingImage"));
+                        if (umbracoImage != null && umbracoImage.Id > 0)
+                            {
+                            var imageSrc = !string.IsNullOrEmpty(umbracoImage.GetCropUrl("pageHeading")) ? umbracoImage.GetCropUrl("pageHeading") : umbracoImage.GetCropUrl(1000, 300);
+                            <div class="mb20">
+                                <img alt="@Model.Content.Name" src="@imageSrc">
+                            </div>
+                            }
                         }
-                    }
 
-                @if (Model.Content.HasProperty("bodyText") && Model.Content.HasValue("bodyText"))
-                    {
-                    <div class="headingsubtitle">
-                        @Html.Raw(Model.Content.GetPropertyValue("bodyText"))
-                    </div>
-                    }
+                    @if (Model.Content.HasProperty("bodyText") && Model.Content.HasValue("bodyText"))
+                        {
+                        <div class="headingsubtitle">
+                            @Html.Raw(Model.Content.GetPropertyValue("bodyText"))
+                        </div>
+                        }*@
 
                 @Html.Partial("Team/MembersList")
 
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt40column">
+                @Html.Partial("Master/SideNavigation")
+            </div>
+        </div>
+
+        <div class="row mt20 doubleBorderTop doubleBorderBottom">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt40column">
                 @if (Model.Content.HasProperty("teamCalendar") && Model.Content.HasValue("teamCalendar"))
                     {
                     var homePage = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "HomePage");
@@ -49,7 +58,7 @@
                         if (eventDetailsPage != null && eventDetailsPage.Id > 0)
                             {
                             <div class="mt20 mb20">
-                                <h2 class="heading1">
+                                <h2 class="heading1 doubleBorderBottom">
                                     Teams Calendar
                                 </h2>
                                 <div class="mb20">
@@ -60,14 +69,13 @@
                             }
                         }
                     }
-
             </div>
 
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt40column">
-                @Html.Partial("Master/SideNavigation")
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt40column">
+                @Html.Partial("Master/PageGallaries")
             </div>
-
         </div>
+
     </div>
 }
 

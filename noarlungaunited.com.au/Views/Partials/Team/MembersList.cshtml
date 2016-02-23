@@ -32,7 +32,7 @@
             }
 
         <div class="mt20 mb20">
-            <h2 class="heading1">
+            <h2 class="heading1 doubleBorderBottom">
                 Teams Members
             </h2>
 
@@ -94,7 +94,7 @@
                 <h3>
                     Players
                 </h3>
-                foreach (var rowPlayer in teamPlayers.InGroupsOf(4))
+                foreach (var rowPlayer in teamPlayers.InGroupsOf(6))
                     {
                     <div class="row mt20 mb20 doubleBorderTop doubleBorderBottom">
                         @foreach (var player in rowPlayer)
@@ -104,7 +104,7 @@
                                 {
                                 name = player.GetPropertyValue<string>("fullName");
                                 }
-                            <div class="col-sm-3 col-xs-12 mb20 text-center">
+                            <div class="col-sm-2 col-xs-12 mb20 text-center">
                                 <h4 class="heading3">
                                     @name
                                 </h4>
