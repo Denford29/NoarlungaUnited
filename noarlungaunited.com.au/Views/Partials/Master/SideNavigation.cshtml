@@ -25,6 +25,45 @@
                 {
 
                 }
+            else if (Model.Content.ContentType.Alias == "TeamsLandingPage" || Model.Content.ContentType.Alias == "TeamPage")
+                {
+                <div>
+                    <h2 class="heading1 doubleBorderBottom">
+                        <span class="maintext">
+                            In
+                            <a href="@level2ParentPage.Url" title="@level2ParentPageTitle">
+                                @level2ParentPageTitle
+                            </a>
+                            section...
+                        </span>
+                    </h2>
+
+                    <h3 class="doubleBorderBottom clearfix">
+                        <p>
+                            Fixtures/Tables see
+                            <a class="btn btn-primary btn-small pull-right" href="http://www.foxsportspulse.com/assoc_page.cgi?c=1-8365-0-0-0&a=COMPS&seasonID=1624691" title="FFSA website" target="_blank">
+                                FFSA website
+                            </a>
+                        </p>
+                    </h3>
+
+                    <ul class="nav nav-list categories">
+                        @foreach (var level3Page in level3Pages)
+                            {
+                            var level3PageTitle = level3Page.Name;
+                            if (level3Page.HasProperty("linkTittle") && level3Page.HasValue("linkTittle"))
+                                {
+                                level3PageTitle = level3Page.GetPropertyValue("linkTittle").ToString();
+                                }
+                            <li>
+                                <a href="@level3Page.Url" title="@level3PageTitle">
+                                    @level3PageTitle
+                                </a>
+                            </li>
+                            }
+                    </ul>
+                </div>
+                }
             else
                 {
                 <div>
@@ -45,11 +84,11 @@
                                 {
                                 level3PageTitle = level3Page.GetPropertyValue("linkTittle").ToString();
                                 }
-                            <li>
-                                <a href="@level3Page.Url" title="@level3PageTitle">
-                                    @level3PageTitle
-                                </a>
-                            </li>
+                        <li>
+                            <a href="@level3Page.Url" title="@level3PageTitle">
+                                @level3PageTitle
+                            </a>
+                        </li>
                             }
                     </ul>
                 </div>
@@ -185,18 +224,18 @@
                                                 <i class="fa fa-calendar"></i>
                                                 <span class="date"> @listingEvent.Start.Value.ToLongDateString()</span>
                                                 }
-                                                @if (listingEvent.Descriptions != null)
+                                            @if (listingEvent.Descriptions != null)
+                                                {
+                                                var eventDescrition = listingEvent.Descriptions.Where(description => description.CultureCode == CultureInfo.CurrentCulture.ToString()).FirstOrDefault();
+                                                if (eventDescrition != null)
                                                     {
-                                                    var eventDescrition = listingEvent.Descriptions.Where(description => description.CultureCode == CultureInfo.CurrentCulture.ToString()).FirstOrDefault();
-                                                    if (eventDescrition != null)
-                                                        {
-                                                        var descriptionText = eventDescrition.Content;
-                                                        var trimmedBodyText = Umbraco.Truncate(descriptionText, 100);
-                                                        <p>
-                                                            @Html.Raw(trimmedBodyText)
-                                                        </p>
-                                                        }
+                                                    var descriptionText = eventDescrition.Content;
+                                                    var trimmedBodyText = Umbraco.Truncate(descriptionText, 100);
+                                                    <p>
+                                                        @Html.Raw(trimmedBodyText)
+                                                    </p>
                                                     }
+                                                }
                                         </div>
                                     </li>
                                 </ul>

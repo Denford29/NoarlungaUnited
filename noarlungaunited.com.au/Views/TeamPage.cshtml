@@ -16,7 +16,7 @@
 
         <div class="row mt20">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mt40column">
-                @*@if (Model.Content.HasProperty("headingImage") && Model.Content.HasValue("headingImage"))
+                @if (Model.Content.HasProperty("headingImage") && Model.Content.HasValue("headingImage"))
                         {
                         var umbracoImage = Umbraco.TypedMedia(Model.Content.GetPropertyValue<Int32>("headingImage"));
                         if (umbracoImage != null && umbracoImage.Id > 0)
@@ -33,7 +33,7 @@
                         <div class="headingsubtitle">
                             @Html.Raw(Model.Content.GetPropertyValue("bodyText"))
                         </div>
-                        }*@
+                        }
 
                 @Html.Partial("Team/MembersList")
 
