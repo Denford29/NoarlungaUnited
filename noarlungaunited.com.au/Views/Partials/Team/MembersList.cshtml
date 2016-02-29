@@ -1,10 +1,8 @@
 ﻿@using Umbraco.Core;
-@using Umbraco.Core.Models;
-@using Umbraco.Core.Services;
 @inherits UmbracoTemplatePage
 @{
     var memberService = ApplicationContext.Current.Services.MemberService;
-    var teamMembers = memberService.GetMembersByPropertyValue("memberTeam", Model.Content.Id.ToString());
+    var teamMembers = memberService.GetMembersByPropertyValue("memberTeam", Model.Content.Id.ToString()).ToList();
 
 
     if (teamMembers.Any())
