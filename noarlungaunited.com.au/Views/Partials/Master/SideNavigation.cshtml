@@ -38,15 +38,6 @@
                         </span>
                     </h2>
 
-                    <h3 class="doubleBorderBottom clearfix">
-                        <p>
-                            Fixtures/Tables see
-                            <a class="btn btn-primary btn-small pull-right" href="http://www.foxsportspulse.com/assoc_page.cgi?c=1-8365-0-0-0&a=COMPS&seasonID=1624691" title="FFSA website" target="_blank">
-                                FFSA website
-                            </a>
-                        </p>
-                    </h3>
-
                     <ul class="nav nav-list categories">
                         @foreach (var level3Page in level3Pages)
                             {
@@ -55,13 +46,24 @@
                                 {
                                 level3PageTitle = level3Page.GetPropertyValue("linkTittle").ToString();
                                 }
-                            <li>
-                                <a href="@level3Page.Url" title="@level3PageTitle">
-                                    @level3PageTitle
-                                </a>
-                            </li>
+                                <li>
+                                    <a href="@level3Page.Url" title="@level3PageTitle">
+                                        @level3PageTitle
+                                    </a>
+                                </li>
                             }
                     </ul>
+                </div>
+
+                <div class="blogdetail">
+                    <h2 class="heading1">
+                        <span class="maintext">Team Fixtures/Tables</span>
+                    </h2>
+                    <p class="text-center">
+                        <a class="btn btn-primary" href="http://www.foxsportspulse.com/assoc_page.cgi?c=1-8365-0-0-0&a=COMPS&seasonID=1624691" title="FFSA website" target="_blank">
+                            FFSA website
+                        </a>
+                    </p>
                 </div>
                 }
             else
@@ -101,13 +103,14 @@
         {
         var newsLandingPage = homePage.Descendants("NewsLandingPage").FirstOrDefault();
         var newsArticle = homePage.Descendants("NewsArticlePage")
-            .Where(article => article.HasValue("articleDate")
-                              && article.GetPropertyValue<DateTime>
-                                  ("articleDate") != DateTime.MinValue)
+        .Where(article => article.HasValue("articleDate")
+        && article.GetPropertyValue<DateTime>
+            ("articleDate") != DateTime.MinValue)
             .Take(2)
             .ToList()
-            .OrderByDescending(article => article.GetPropertyValue<DateTime>("articleDate"))
-            .FirstOrDefault();
+            .OrderByDescending(article => article.GetPropertyValue<DateTime>
+                ("articleDate"))
+                .FirstOrDefault();
         if (newsArticle != null && newsArticle.Id > 0)
             {
             var articleTitle = newsArticle.Name;
@@ -118,16 +121,17 @@
             var articleDate = newsArticle.CreateDate;
             if (newsArticle.HasProperty("articleDate") && newsArticle.HasValue("articleDate"))
                 {
-                articleDate = newsArticle.GetPropertyValue<DateTime>("articleDate");
+                articleDate = newsArticle.GetPropertyValue<DateTime>
+                    ("articleDate");
                 }
             <div class="blogdetail">
                 <h2 class="heading1">
                     <span class="maintext">Latest News</span>
                     @if (newsLandingPage != null && newsLandingPage.Id > 0)
                         {
-                        <a class="btn btn-primary btn-small pull-right" href="@newsLandingPage.Url" title="@newsLandingPage.Name">
-                            All News
-                        </a>
+                    <a class="btn btn-primary btn-small pull-right" href="@newsLandingPage.Url" title="@newsLandingPage.Name">
+                        All News
+                    </a>
                         }
                 </h2>
                 <div id="latestnews" class="caption">
@@ -146,9 +150,9 @@
                                 {
                                 var nonHtmlContent = Umbraco.StripHtml(newsArticle.GetPropertyValue("bodyText").ToString());
                                 var trimmedBodyText = Umbraco.Truncate(nonHtmlContent, 100);
-                                <p>
-                                    @Html.Raw(trimmedBodyText)
-                                </p>
+                            <p>
+                                @Html.Raw(trimmedBodyText)
+                            </p>
                                 }
                         </li>
                     </ul>
@@ -164,6 +168,10 @@
         if (eventsLandingPage != null && eventsLandingPage.Id > 0 && eventsLandingPage.HasProperty("sideCalendarEvents") && eventsLandingPage.HasValue("sideCalendarEvents"))
             {
             var eventsCalendarId = eventsLandingPage.GetPropertyValue<string>("sideCalendarEvents");
+            if (Model.Content.ContentType.Alias == "TeamPage")
+                {
+                eventsCalendarId = Model.Content.GetPropertyValue<string>("teamCalendar");
+                }
             int number;
             if (Int32.TryParse(eventsCalendarId, out number))
                 {
@@ -175,74 +183,153 @@
                 {
                 var calDetails = new EventApiController();
                 var hasEvents = calDetails.GetAll().Any();
-                <div class="blogdetail">
-                    <h2 class="heading1">
-                        <span class="maintext">
-                            Latest Event
-                        </span>
-                        <a class="btn btn-primary btn-small pull-right" href="@eventsLandingPage.Url" title="@eventsLandingPage.Name">
-                            All Events
-                        </a>
-                    </h2>
-                    @if (hasEvents)
-                        {
-                        var listingEvent = calDetails.GetAll().
-                            Where(item => item.Start.HasValue && item.End.HasValue).
-                            Where(item => item.End >= DateTime.Today).
-                            OrderBy(item => item.Start).Take(2).ToList().FirstOrDefault();
-
-                        if (listingEvent != null && listingEvent.Id > 0)
+                if (Model.Content.ContentType.Alias == "TeamPage")
+                    {
+                    <div class="blogdetail">
+                        <h2 class="heading1">
+                            <span class="maintext">
+                                Up-coming Events
+                            </span>
+                            <a class="btn btn-primary btn-small pull-right" href="@eventsLandingPage.Url" title="@eventsLandingPage.Name">
+                                All Events
+                            </a>
+                        </h2>
+                        @if (hasEvents)
                             {
-                            var eventListUrl = "";
-                            if (eventsLandingPage.Descendants("EventDetailsPage").Any())
+                            var listingEvents = calDetails.GetAll().
+                                Where(item => item.calendarId == calendar.Id).
+                                Where(item => item.Start.HasValue && item.End.HasValue).
+                                Where(item => item.End >= DateTime.Today).
+                                OrderBy(item => item.Start).Take(5).ToList();
+
+                            if (listingEvents.Count > 0)
                                 {
-                                var eventDetailsPage = eventsLandingPage.Descendants("EventDetailsPage").FirstOrDefault();
-                                var typeInt = listingEvent.AllDay ? 0 : 1;
-                                if (eventDetailsPage != null && eventDetailsPage.Id > 0)
-                                    {
-                                    eventListUrl = eventDetailsPage.Url + "?id=" + listingEvent.Id + "&type=" + typeInt + "&calendar=" + listingEvent.calendarId;
-                                    }
-                                }
-                            <div id="latestnews" class="caption">
-                                <ul>
-                                    <li>
-                                        <div class="newstitle">
-                                            <h4>
-                                                @if (!string.IsNullOrEmpty(eventListUrl))
+                                <div id="latestnews" class="caption">
+                                    <ul>
+                                        @foreach (var listingEvent in listingEvents)
+                                            {
+                                            var eventListUrl = "";
+                                            if (eventsLandingPage.Descendants("EventDetailsPage").Any())
+                                                {
+                                                var eventDetailsPage = eventsLandingPage.Descendants("EventDetailsPage").FirstOrDefault();
+                                                var typeInt = listingEvent.AllDay ? 0 : 1;
+                                                if (eventDetailsPage != null && eventDetailsPage.Id > 0)
                                                     {
+                                                    eventListUrl = eventDetailsPage.Url + "?id=" + listingEvent.Id + "&type=" + typeInt + "&calendar=" + listingEvent.calendarId;
+                                                    }
+                                                }
+                                            <li>
+                                                <div class="newstitle">
+                                                    <h4>
+                                                        @if (!string.IsNullOrEmpty(eventListUrl))
+                                                            {
+                                                            <a href="@eventListUrl" title="@listingEvent.Title">
+                                                                @listingEvent.Title
+                                                            </a>
+                                                            }
+                                                        else
+                                                            {
+                                                            @listingEvent.Title
+                                                            }
+                                                    </h4>
+                                                    @if (listingEvent.Start.HasValue)
+                                                        {
+                                                        <i class="fa fa-calendar"></i>
+                                                        <span class="date"> @listingEvent.Start.Value.ToLongDateString()</span>
+                                                        }
+                                                    @if (listingEvent.Descriptions != null)
+                                                        {
+                                                        var eventDescrition = listingEvent.Descriptions.Where(description => description.CultureCode == CultureInfo.CurrentCulture.ToString()).FirstOrDefault();
+                                                        if (eventDescrition != null)
+                                                            {
+                                                            var descriptionText = eventDescrition.Content;
+                                                            var trimmedBodyText = Umbraco.Truncate(descriptionText, 100);
+                                                            <p>
+                                                                @Html.Raw(trimmedBodyText)
+                                                            </p>
+                                                            }
+                                                        }
+                                                </div>
+                                            </li>
+                                            }
+                                    </ul>
+                                </div>
+                                }
+                            }
+                    </div>
+                    }
+                else
+                    {
+                    <div class="blogdetail">
+                        <h2 class="heading1">
+                            <span class="maintext">
+                                Up-coming Event
+                            </span>
+                            <a class="btn btn-primary btn-small pull-right" href="@eventsLandingPage.Url" title="@eventsLandingPage.Name">
+                                All Events
+                            </a>
+                        </h2>
+                        @if (hasEvents)
+                            {
+                            var listingEvent = calDetails.GetAll().
+                                Where(item => item.Start.HasValue && item.End.HasValue).
+                                Where(item => item.End >= DateTime.Today).
+                                OrderBy(item => item.Start).Take(3).ToList().FirstOrDefault();
+
+                            if (listingEvent != null && listingEvent.Id > 0)
+                                {
+                                var eventListUrl = "";
+                                if (eventsLandingPage.Descendants("EventDetailsPage").Any())
+                                    {
+                                    var eventDetailsPage = eventsLandingPage.Descendants("EventDetailsPage").FirstOrDefault();
+                                    var typeInt = listingEvent.AllDay ? 0 : 1;
+                                    if (eventDetailsPage != null && eventDetailsPage.Id > 0)
+                                        {
+                                        eventListUrl = eventDetailsPage.Url + "?id=" + listingEvent.Id + "&type=" + typeInt + "&calendar=" + listingEvent.calendarId;
+                                        }
+                                    }
+                        <div id="latestnews" class="caption">
+                            <ul>
+                                <li>
+                                    <div class="newstitle">
+                                        <h4>
+                                            @if (!string.IsNullOrEmpty(eventListUrl))
+                                                        {
                                                     <a href="@eventListUrl" title="@listingEvent.Title">
                                                         @listingEvent.Title
                                                     </a>
-                                                    }
-                                                else
-                                                    {
+                                                        }
+                                                    else
+                                                        {
                                                     @listingEvent.Title
-                                                    }
-                                            </h4>
-                                            @if (listingEvent.Start.HasValue)
-                                                {
+                                                        }
+                                        </h4>
+                                        @if (listingEvent.Start.HasValue)
+                                                    {
                                                 <i class="fa fa-calendar"></i>
                                                 <span class="date"> @listingEvent.Start.Value.ToLongDateString()</span>
-                                                }
-                                            @if (listingEvent.Descriptions != null)
-                                                {
-                                                var eventDescrition = listingEvent.Descriptions.Where(description => description.CultureCode == CultureInfo.CurrentCulture.ToString()).FirstOrDefault();
-                                                if (eventDescrition != null)
-                                                    {
-                                                    var descriptionText = eventDescrition.Content;
-                                                    var trimmedBodyText = Umbraco.Truncate(descriptionText, 100);
-                                                    <p>
-                                                        @Html.Raw(trimmedBodyText)
-                                                    </p>
                                                     }
-                                                }
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                                        @if (listingEvent.Descriptions != null)
+                                                    {
+                                                    var eventDescrition = listingEvent.Descriptions.Where(description => description.CultureCode == CultureInfo.CurrentCulture.ToString()).FirstOrDefault();
+                                                    if (eventDescrition != null)
+                                                        {
+                                                        var descriptionText = eventDescrition.Content;
+                                                        var trimmedBodyText = Umbraco.Truncate(descriptionText, 100);
+                                                <p>
+                                                    @Html.Raw(trimmedBodyText)
+                                                </p>
+                                                        }
+                                                    }
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                                }
                             }
-                        }
-                </div>
+                    </div>
+                    }
+
                 }
             }
         }

@@ -15,7 +15,7 @@
         @Html.Partial("Master/PageHeading")
 
         <div class="row mt20">
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 mt40column">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 mt40column">
                 @if (Model.Content.HasProperty("headingImage") && Model.Content.HasValue("headingImage"))
                         {
                         var umbracoImage = Umbraco.TypedMedia(Model.Content.GetPropertyValue<Int32>("headingImage"));
@@ -39,7 +39,7 @@
 
             </div>
 
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 mt40column">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt40column">
                 @Html.Partial("Master/SideNavigation")
             </div>
         </div>

@@ -61,11 +61,15 @@
             <div class="container mt10 mb10">
                 <div class="row headerLogos hidden-xs">
                     <div class="col-lg-2 col-md-2 col-sm-2">
-                        <img src="@rightHeaderLogo" class="logoImage" />
+                        <a href="/" title="@siteHeading">
+                            <img src="@rightHeaderLogo" class="logoImage" />
+                        </a>
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-8 LogoHeading">
                         <h1 class="headingcenter">
-                            @siteHeading
+                            <a href="/" title="@siteHeading">
+                                @siteHeading
+                            </a>
                         </h1>
                         <h3 class="headingcenter">
                             @siteAddress
@@ -78,7 +82,9 @@
                         </h3>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2">
-                        <img src="@leftHeaderLogo" class="logoImage" />
+                        <a href="/" title="@siteHeading">
+                            <img src="@leftHeaderLogo" class="logoImage" />
+                        </a>
                     </div>
                 </div>
 
@@ -93,7 +99,6 @@
                 </div>
             </div>
             <!--Header Logos - End -->
-
             <!-- Menu Navbar -- Start -->
             @if (homePage != null && homePage.Id > 0)
                 {
@@ -125,7 +130,7 @@
                                     @siteEmailAddress
                                 </h5>
                             </div>
-                            
+
                         </div>
 
                         <div id="navbar" class="container menurelative navbar-collapse collapse">
@@ -135,7 +140,7 @@
                                         @if (homePage.HasProperty("pageIcon") && homePage.HasValue("pageIcon"))
                                             {
                                             var homeIcon = homePage.GetPropertyValue("pageIcon").ToString();
-                                        <i class="fa fa-@homeIcon fa-fw"></i>
+                                            <i class="fa fa-@homeIcon fa-fw"></i>
                                             }
                                         @homeTitle
                                     </a>
@@ -151,54 +156,54 @@
                                             pageTitle = landingPage.GetPropertyValue("linkTittle").ToString();
                                             }
 
-                                <li>
-                                    <a href="@landingPage.Url" title="@pageTitle" @(landingPage.Id == Model.Content.Id ? "class=active" : Model.Content.AncestorOrSelf(2).Id == landingPage.Id ? "class=active" : null)>
-                                        @if (landingPage.HasProperty("pageIcon") && landingPage.HasValue("pageIcon"))
+                                        <li>
+                                            <a href="@landingPage.Url" title="@pageTitle" @(landingPage.Id == Model.Content.Id ? "class=active" : Model.Content.AncestorOrSelf(2).Id == landingPage.Id ? "class=active" : null)>
+                                                @if (landingPage.HasProperty("pageIcon") && landingPage.HasValue("pageIcon"))
                                                     {
                                                     var pageIcon = landingPage.GetPropertyValue("pageIcon").ToString();
-                                                <i class="fa fa-@pageIcon fa-fw"></i>
+                                                    <i class="fa fa-@pageIcon fa-fw"></i>
                                                     }
-                                        @pageTitle
-                                    </a>
-                                    @if (landingPage.Children.Any() && landingPage.ContentType.Alias != "EventsLandingPage")
-                                        {
-                                        <div class="hidden-xs">
-                                            <h4 class="menutitle">
                                                 @pageTitle
-                                            </h4>
-                                            <div class="mega">
-                                                <ul>
-                                                    @foreach (var childPage in landingPage.Children.Where(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu")))
-                                                        {
-                                                        var childPageTitle = childPage.Name;
-                                                        if (childPage.HasProperty("linkTittle") && childPage.HasValue("linkTittle"))
-                                                            {
-                                                            childPageTitle = childPage.GetPropertyValue("linkTittle").ToString();
-                                                            }
-                                                        <li>
-                                                            <a href="@childPage.Url" title="@childPageTitle">
-                                                                @if (childPage.HasProperty("pageIcon") && childPage.HasValue("pageIcon"))
+                                            </a>
+                                            @if (landingPage.Children.Any() && landingPage.ContentType.Alias != "EventsLandingPage")
+                                                {
+                                                <div class="hidden-xs">
+                                                    <h4 class="menutitle">
+                                                        @pageTitle
+                                                    </h4>
+                                                    <div class="mega">
+                                                        <ul>
+                                                            @foreach (var childPage in landingPage.Children.Where(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu")))
+                                                                {
+                                                                var childPageTitle = childPage.Name;
+                                                                if (childPage.HasProperty("linkTittle") && childPage.HasValue("linkTittle"))
                                                                     {
-                                                                    var pageIcon = childPage.GetPropertyValue("pageIcon").ToString();
-                                                                    <i class="fa fa-@pageIcon fa-fw"></i>
+                                                                    childPageTitle = childPage.GetPropertyValue("linkTittle").ToString();
                                                                     }
-                                                                @childPageTitle
-                                                            </a>
-                                                        </li>
-                                                        }
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        }
-                                </li>
+                                                                <li>
+                                                                    <a href="@childPage.Url" title="@childPageTitle">
+                                                                        @if (childPage.HasProperty("pageIcon") && childPage.HasValue("pageIcon"))
+                                                                            {
+                                                                            var pageIcon = childPage.GetPropertyValue("pageIcon").ToString();
+                                                                            <i class="fa fa-@pageIcon fa-fw"></i>
+                                                                            }
+                                                                        @childPageTitle
+                                                                    </a>
+                                                                </li>
+                                                                }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                }
+                                        </li>
                                         }
                                     }
                             </ul>
                         </div>
                     </nav>
-                    </div>
+                </div>
 
                 }
             <!-- Menu Navbar - End -->
-</header>
+        </header>
 }

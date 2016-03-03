@@ -30,23 +30,21 @@
 
                                 var galleryId = "image" + counter;
                                 var galleryBtnId = "gallery" + counter;
-                                <div class="col-md-3 text-center" id="@galleryId">
-                                    <a href="@imageAlbumUrl" title="@albumName Images" data-gallery>
+                                    <div class="col-md-3 text-center" id="@galleryId">
                                         <img src="@imageAlbumUrl" alt="@albumName Images">
-                                    </a>
-                                    @foreach (var image in albumImages)
+                                        @foreach (var image in albumImages)
                                         {
-                                        var sliderImage = image.GetCropUrl();
-                                        <a href="@sliderImage" title="@albumName Images" data-gallery class="hidden"></a>
+                                            var sliderImage = image.GetCropUrl();
+                                            <a href="@sliderImage" title="@albumName Images" data-gallery class="hidden"></a>
                                         }
-                                    <h4>
-                                        @albumName Gallery
-                                    </h4>
-                                    <button id="@galleryBtnId" type="button" class="btn btn-primary btn-small">
-                                        View Gallery
-                                        <i class="glyphicon glyphicon-picture"></i>
-                                    </button>
-                                </div>
+                                        <h4>
+                                            @albumName Gallery
+                                        </h4>
+                                        <button id="@galleryBtnId" type="button" class="btn btn-primary btn-small">
+                                            View Gallery
+                                            <i class="glyphicon glyphicon-picture"></i>
+                                        </button>
+                                    </div>
                                 <script>
                                     $("#@galleryBtnId").on("click", function (event) {
                                         event.preventDefault();
