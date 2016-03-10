@@ -22,7 +22,9 @@ namespace noarlungaunited.com.au.Controllers
         [HttpPost]
         public ActionResult FooterContactSubmit(ContactModel formContactModel)
             {
-            if (!ModelState.IsValid)
+            var formData = Request.Form;
+            var captchaRequest = formData["g-recaptcha-response"];
+            if (string.IsNullOrWhiteSpace(captchaRequest) || !ModelState.IsValid)
                 {
                 TempData["contactError"] =
                     "Opps... Form Error, There was an error with your details please check them and try again.";
