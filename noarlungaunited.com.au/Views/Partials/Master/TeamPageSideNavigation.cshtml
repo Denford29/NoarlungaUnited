@@ -1,0 +1,114 @@
+﻿@using System.Globalization
+@using Archetype.Models
+@using EventCalendarBelle
+@using EventCalendarBelle.Controller
+@inherits UmbracoTemplatePage
+@{
+
+    var homePage = Umbraco.TypedContentAtRoot().FirstOrDefault(x => x.ContentType.Alias == "HomePage");
+    var level2ParentPage = homePage;
+    if (Model.Content.Level != 1)
+        {
+        level2ParentPage = Model.Content.Level == 2 ? Model.Content : Model.Content.Parent;
+        }
+    if (level2ParentPage != null && level2ParentPage.Id > 0)
+        {
+        var level2ParentPageTitle = level2ParentPage.Name;
+        if (level2ParentPage.HasProperty("linkTittle") && level2ParentPage.HasValue("linkTittle"))
+            {
+            level2ParentPageTitle = level2ParentPage.GetPropertyValue("linkTittle").ToString();
+            }
+
+        if (Model.Content.HasProperty("leagueInfo") && Model.Content.HasValue("leagueInfo"))
+            {
+            var teamLeagueInfo = Model.Content.GetPropertyValue<ArchetypeModel>("leagueInfo");
+            if (teamLeagueInfo != null && teamLeagueInfo.Fieldsets.Any())
+                {
+                var firstLeagueInfo = teamLeagueInfo.First();
+                if (!string.IsNullOrEmpty(firstLeagueInfo.GetValue("leagueName")))
+                    {
+                    <div class="blogdetail">
+                        @foreach (var fieldset in teamLeagueInfo.Fieldsets)
+                            {
+                            var leagueTitle = level2ParentPageTitle;
+                            var leagueName = fieldset.GetValue("leagueName");
+                            var leagueLink = fieldset.GetValue("leagueLink");
+                            var teamsList = fieldset.GetValue<string[]>("teamsList");;
+
+
+                            if (!string.IsNullOrWhiteSpace(leagueName))
+                                {
+                                leagueTitle = leagueName;
+                                <h2 class="heading1 clearfix">
+                                    <span class="maintext">@leagueName</span>
+
+                                    @if (!string.IsNullOrWhiteSpace(leagueLink))
+                                        {
+                                        <a class="btn btn-primary btn-small pull-right" href="@leagueLink" title="@leagueTitle" target="_blank">
+                                            @leagueTitle
+                                        </a>
+                                        }
+                                </h2>
+                                }
+
+                            if (teamsList.Any())
+                                {
+                                <h3 class="doubleBorderBottom doubleBorderTop pt10 pb10">
+                                    League Teams
+                                </h3>
+
+                                <ul class="nav nav-list categories">
+                                    @foreach (var team in teamsList.Where(value => !value.IsNullOrWhiteSpace()))
+                                        {
+                                            <li>
+                                                <h4>
+                                                    @team
+                                                </h4>
+                                            </li>
+                                        }
+                                </ul>
+                                }
+
+                            }
+                    </div>
+                    }
+                }
+            }
+
+
+        if (level2ParentPage.Children.Any(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu")))
+            {
+
+            var level3Pages = level2ParentPage.Children.Where(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu"));
+
+            <div class="blogdetail">
+                <h2 class="heading1">
+                    <span class="maintext">
+                        In
+                        <a href="@level2ParentPage.Url" title="@level2ParentPageTitle">
+                            @level2ParentPageTitle
+                        </a>
+                        section...
+                    </span>
+                </h2>
+
+                <ul class="nav nav-list categories">
+                    @foreach (var level3Page in level3Pages)
+                        {
+                        var level3PageTitle = level3Page.Name;
+                        if (level3Page.HasProperty("linkTittle") && level3Page.HasValue("linkTittle"))
+                            {
+                            level3PageTitle = level3Page.GetPropertyValue("linkTittle").ToString();
+                            }
+                        <li>
+                            <a href="@level3Page.Url" title="@level3PageTitle">
+                                @level3PageTitle
+                            </a>
+                        </li>
+                        }
+                </ul>
+            </div>
+
+            }
+        }
+}

@@ -46,6 +46,12 @@ a {
     cursor: pointer;
 }
 
+a:hover , a:focus{
+    color: #83d4fa;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 input, button, select, textarea {
     font-family: 'Open Sans', arial, sans-serif;
 }
@@ -57,11 +63,6 @@ input, button, select, textarea {
     .btn-primary:hover {
         background-color: #83D4FA;
     }
-
-a:hover, a:focus {
-    text-decoration: none;
-    color: inherit;
-}
 
 a:focus {
     text-decoration: none;
@@ -114,6 +115,48 @@ ul, ul li {
 .m5 {
     margin: 5px 0;
 }
+
+
+.p0 {
+    padding: 0;
+}
+
+.pt10 {
+    padding-top: 10px;
+}
+
+.pt40 {
+    padding-top: 40px;
+}
+
+.pb40 {
+    padding-bottom: 40px;
+}
+
+.pr10 {
+    padding-right: 10px;
+}
+
+.pt20 {
+    padding-top: 20px;
+}
+
+.pl0 {
+    padding-left:0 !important;
+}
+
+.pb10 {
+    padding-bottom: 10px;
+}
+
+.pb20 {
+    padding-bottom: 20px;
+}
+
+.p5 {
+    padding: 5px 0;
+}
+
 
 .w100 {
     width: 100%;

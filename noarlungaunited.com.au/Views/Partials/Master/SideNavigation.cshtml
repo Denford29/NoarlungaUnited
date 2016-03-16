@@ -27,44 +27,7 @@
                 }
             else if (Model.Content.ContentType.Alias == "TeamsLandingPage" || Model.Content.ContentType.Alias == "TeamPage")
                 {
-                <div>
-                    <h2 class="heading1 doubleBorderBottom">
-                        <span class="maintext">
-                            In
-                            <a href="@level2ParentPage.Url" title="@level2ParentPageTitle">
-                                @level2ParentPageTitle
-                            </a>
-                            section...
-                        </span>
-                    </h2>
-
-                    <ul class="nav nav-list categories">
-                        @foreach (var level3Page in level3Pages)
-                            {
-                            var level3PageTitle = level3Page.Name;
-                            if (level3Page.HasProperty("linkTittle") && level3Page.HasValue("linkTittle"))
-                                {
-                                level3PageTitle = level3Page.GetPropertyValue("linkTittle").ToString();
-                                }
-                                <li>
-                                    <a href="@level3Page.Url" title="@level3PageTitle">
-                                        @level3PageTitle
-                                    </a>
-                                </li>
-                            }
-                    </ul>
-                </div>
-
-                <div class="blogdetail">
-                    <h2 class="heading1">
-                        <span class="maintext">Team Fixtures/Tables</span>
-                    </h2>
-                    <p class="text-center">
-                        <a class="btn btn-primary" href="http://www.foxsportspulse.com/assoc_page.cgi?c=1-8365-0-0-0&a=COMPS&seasonID=1624691" title="FFSA website" target="_blank">
-                            FFSA website
-                        </a>
-                    </p>
-                </div>
+                @Html.Partial("Master/TeamPageSideNavigation")
                 }
             else
                 {
