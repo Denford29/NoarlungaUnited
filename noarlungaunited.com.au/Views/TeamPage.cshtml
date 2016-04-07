@@ -8,6 +8,16 @@
 
 @{
     Layout = "SiteMaster.cshtml";
+
+    var calendarClasses = "col-md-offset-1 col-md-10 col- col-sm-12";
+    if (Model.Content.HasProperty("pageAlbums") && Model.Content.HasValue("pageAlbums"))
+    {
+        var pageAlbumIds = Model.Content.GetPropertyValue("pageAlbums").ToString();
+        if (!string.IsNullOrWhiteSpace(pageAlbumIds))
+        {
+            calendarClasses = "col-md-6 col-sm-12";
+        }
+    }
     <div class="container">
 
         @Html.Partial("Master/BreadCrumbs")
@@ -57,7 +67,7 @@
             var eventDetailsPage = homePage.Descendants("EventDetailsPage").FirstOrDefault();
             if (eventDetailsPage != null && eventDetailsPage.Id > 0)
                 {
-                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mt40column">
+                <div class="@calendarClasses mt40column">
                     <div class="mt20 mb20">
                         <h2 class="heading1 doubleBorderBottom">
                             Teams Calendar

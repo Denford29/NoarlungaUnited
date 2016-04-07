@@ -166,35 +166,90 @@
                                                 @pageTitle
                                             </a>
                                             @if (landingPage.Children.Any() && landingPage.ContentType.Alias != "EventsLandingPage")
-                                                {
+                                            {
+
+                                                var childPages = landingPage.Children.ToList();
                                                 <div class="hidden-xs">
                                                     <h4 class="menutitle">
                                                         @pageTitle
                                                     </h4>
-                                                    <div class="mega">
-                                                        <ul>
-                                                            @foreach (var childPage in landingPage.Children.Where(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu")))
-                                                                {
-                                                                var childPageTitle = childPage.Name;
-                                                                if (childPage.HasProperty("linkTittle") && childPage.HasValue("linkTittle"))
-                                                                    {
-                                                                    childPageTitle = childPage.GetPropertyValue("linkTittle").ToString();
-                                                                    }
-                                                                <li>
-                                                                    <a href="@childPage.Url" title="@childPageTitle">
-                                                                        @if (childPage.HasProperty("pageIcon") && childPage.HasValue("pageIcon"))
+                                                    @if (childPages.Count() > 5)
+                                                        {
+                                                        var totalCount = childPages.Count();
+                                                        var halfTotal = totalCount / 2;
+                                                        var firstList = childPages.Take(halfTotal).ToList();
+                                                            var secondList = childPages.Skip(halfTotal).ToList();
+                                                            <div class="mega">
+                                                                <ul>
+                                                                    @foreach (var childPage in firstList.Where(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu")))
+                                                                        {
+                                                                        var childPageTitle = childPage.Name;
+                                                                        if (childPage.HasProperty("linkTittle") && childPage.HasValue("linkTittle"))
                                                                             {
-                                                                            var pageIcon = childPage.GetPropertyValue("pageIcon").ToString();
-                                                                            <i class="fa fa-@pageIcon fa-fw"></i>
+                                                                            childPageTitle = childPage.GetPropertyValue("linkTittle").ToString();
                                                                             }
-                                                                        @childPageTitle
-                                                                    </a>
-                                                                </li>
-                                                                }
-                                                        </ul>
-                                                    </div>
+                                                                        <li>
+                                                                            <a href="@childPage.Url" title="@childPageTitle">
+                                                                                @if (childPage.HasProperty("pageIcon") && childPage.HasValue("pageIcon"))
+                                                                                    {
+                                                                                    var pageIcon = childPage.GetPropertyValue("pageIcon").ToString();
+                                                                                    <i class="fa fa-@pageIcon fa-fw"></i>
+                                                                                    }
+                                                                                @childPageTitle
+                                                                            </a>
+                                                                        </li>
+                                                                        }
+                                                                </ul>
+                                                                <ul>
+                                                                    @foreach (var childPage in secondList.Where(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu")))
+                                                                        {
+                                                                        var childPageTitle = childPage.Name;
+                                                                        if (childPage.HasProperty("linkTittle") && childPage.HasValue("linkTittle"))
+                                                                            {
+                                                                            childPageTitle = childPage.GetPropertyValue("linkTittle").ToString();
+                                                                            }
+                                                                        <li>
+                                                                            <a href="@childPage.Url" title="@childPageTitle">
+                                                                                @if (childPage.HasProperty("pageIcon") && childPage.HasValue("pageIcon"))
+                                                                                    {
+                                                                                    var pageIcon = childPage.GetPropertyValue("pageIcon").ToString();
+                                                                                    <i class="fa fa-@pageIcon fa-fw"></i>
+                                                                                    }
+                                                                                @childPageTitle
+                                                                            </a>
+                                                                        </li>
+                                                                        }
+                                                                </ul>
+                                                            </div>
+                                                             }
+                                                             else
+                                                             {
+                                                        <div class="mega">
+                                                            <ul>
+                                                                @foreach (var childPage in landingPage.Children.Where(childPage => childPage.IsVisible() && !childPage.GetPropertyValue<bool>("hideFromMenu")))
+                                                                    {
+                                                                    var childPageTitle = childPage.Name;
+                                                                    if (childPage.HasProperty("linkTittle") && childPage.HasValue("linkTittle"))
+                                                                        {
+                                                                        childPageTitle = childPage.GetPropertyValue("linkTittle").ToString();
+                                                                        }
+                                                                    <li>
+                                                                        <a href="@childPage.Url" title="@childPageTitle">
+                                                                            @if (childPage.HasProperty("pageIcon") && childPage.HasValue("pageIcon"))
+                                                                                {
+                                                                                var pageIcon = childPage.GetPropertyValue("pageIcon").ToString();
+                                                                                <i class="fa fa-@pageIcon fa-fw"></i>
+                                                                                }
+                                                                            @childPageTitle
+                                                                        </a>
+                                                                    </li>
+                                                                    }
+                                                            </ul>
+                                                        </div>
+                                                        }
+
                                                 </div>
-                                                }
+                                            }
                                         </li>
                                         }
                                     }

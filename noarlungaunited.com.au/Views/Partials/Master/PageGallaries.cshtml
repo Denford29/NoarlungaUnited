@@ -15,7 +15,7 @@
                         @Model.Content.Name Image Galleries
                     </h2>
 
-                    <div class="row hidden-sm hidden-xs sliderImages">
+                    <div class="hidden-sm hidden-xs sliderImages">
 
                         @foreach (var albumId in albumIdsList)
                             {
@@ -30,21 +30,21 @@
 
                                 var galleryId = "image" + counter;
                                 var galleryBtnId = "gallery" + counter;
-                                    <div class="col-md-3 text-center" id="@galleryId">
-                                        <img src="@imageAlbumUrl" alt="@albumName Images">
-                                        @foreach (var image in albumImages)
+                                <div class="col-md-3 text-center" id="@galleryId">
+                                    <img src="@imageAlbumUrl" alt="@albumName Images">
+                                    @foreach (var image in albumImages)
                                         {
-                                            var sliderImage = image.GetCropUrl();
-                                            <a href="@sliderImage" title="@albumName Images" data-gallery class="hidden"></a>
+                                        var sliderImage = image.GetCropUrl();
+                                        <a href="@sliderImage" title="@albumName Images" data-gallery class="hidden"></a>
                                         }
-                                        <h4>
-                                            @albumName Gallery
-                                        </h4>
-                                        <button id="@galleryBtnId" type="button" class="btn btn-primary btn-small">
-                                            View Gallery
-                                            <i class="glyphicon glyphicon-picture"></i>
-                                        </button>
-                                    </div>
+                                    <h4>
+                                        @albumName Gallery
+                                    </h4>
+                                    <button id="@galleryBtnId" type="button" class="btn btn-primary btn-small">
+                                        View Gallery
+                                        <i class="glyphicon glyphicon-picture"></i>
+                                    </button>
+                                </div>
                                 <script>
                                     $("#@galleryBtnId").on("click", function (event) {
                                         event.preventDefault();
@@ -65,35 +65,35 @@
                     var firstImage = pageAlbum.Descendants("Image").FirstOrDefault();
                     var imageAlbumUrl = !string.IsNullOrEmpty(firstImage.GetCropUrl("galleryImage")) ? firstImage.GetCropUrl("galleryImage") : firstImage.GetCropUrl(500, 350);
 
-                    <div class="mt20 mb20 doubleBorderTop doubleBorderBottom">
+                    <div class="mt20 mb20">
 
-                        <h2 class="heading1">
+                        <h2 class="heading1 doubleBorderBottom">
                             @Model.Content.Name Gallery
                         </h2>
 
-                        <div class="row sliderOptions hidden-sm hidden-xs mt20 mb20 doubleBorderTop">
-                            <button id="image-gallery-button" type="button" class="btn btn-primary btn-lg col-md-3">
-                                Launch Image Gallery
+                        <div class="sliderOptions hidden-sm hidden-xs mt20 mb20">
+                            <button id="image-gallery-button" type="button" class="btn btn-primary col-md-3">
+                                Image Gallery
                                 <i class="glyphicon glyphicon-picture"></i>
                             </button>
-                            <label class="btn btn-primary btn-lg col-md-3 col-lg-offset-1">
+                            <label class="btn btn-primary col-md-3 col-lg-offset-1">
                                 <input id="borderless-checkbox" type="checkbox"> Borderless
                                 <i class="glyphicon glyphicon-leaf"></i>
                             </label>
-                            <label class="btn btn-primary btn-lg col-md-3 col-lg-offset-1">
+                            <label class="btn btn-primary col-md-3 col-lg-offset-1">
                                 <input id="fullscreen-checkbox" type="checkbox"> Fullscreen
                                 <i class="glyphicon glyphicon-fullscreen"></i>
                             </label>
                         </div>
 
-                        <div id="links" class="row hidden-sm hidden-xs sliderImages">
+                        <div id="links" class="hidden-sm hidden-xs sliderImages">
                             @foreach (var image in albumImages.Take(24))
                                 {
                                 var imageThumbnail = !string.IsNullOrEmpty(image.GetCropUrl("Thumbnail")) ? image.GetCropUrl("Thumbnail") : image.GetCropUrl(100, 100);
                                 var sliderImage = image.GetCropUrl();
-                            <a href="@sliderImage" title="@pageAlbum.Name Images" data-gallery class="col-md-2">
-                                <img src="@imageThumbnail" alt="@pageAlbum.Name Images">
-                            </a>
+                                <a href="@sliderImage" title="@pageAlbum.Name Images" data-gallery class="col-md-2">
+                                    <img src="@imageThumbnail" alt="@pageAlbum.Name Images">
+                                </a>
                                 }
                         </div>
 
@@ -104,7 +104,7 @@
                             @foreach (var image in albumImages)
                                 {
                                 var sliderImage = image.GetCropUrl();
-                            <a href="@sliderImage" title="@pageAlbum.Name Images" data-gallery class="hidden"></a>
+                                <a href="@sliderImage" title="@pageAlbum.Name Images" data-gallery class="hidden"></a>
                                 }
                         </div>
 
